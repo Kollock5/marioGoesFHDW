@@ -14,7 +14,7 @@ Mario ist auf der suche nach seinem Bachelorabschluss und muss verschiedene hind
  
  Beim pullrequest auf main ist ein review vom code erförderlich
  
- #Github Hilfe
+ # Github Hilfe
  
  0. Einrichten der Umgebung
  git config --global user.email kacper.rogala@edu.fhdw.de
