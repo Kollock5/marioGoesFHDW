@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "vscjava.vscode-java-debug",
+        "redhat.java",
+        "lonefy.vscode-js-css-html-formatter",
+        "zignd.html-css-class-completion",
+        "ecmel.vscode-html-css",
+        "belkacemberras.spellcheck"
+    ]
+}
