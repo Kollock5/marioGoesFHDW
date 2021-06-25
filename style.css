@@ -1,9 +1,22 @@
 body {
     background-color: lightblue;
     font-family: Arial;
+    margin: 0px;
 }
 
 h1 {
     color: navy;
     margin-left: 20px;
+}
+
+#game {
+    position: absolute;
+    background: aqua;
+    height: 800px;
+    width: 100%;
+}
+
+.block {
+    background-color: red;
+    position: absolute;
 }
