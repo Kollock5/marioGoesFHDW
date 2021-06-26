@@ -16,7 +16,7 @@ h1 {
     width: 100%;
 }
 
-.block {
+.Entity {
     background-color: red;
     position: absolute;
 }

@@ -1,9 +1,9 @@
 function levelController() {
     var level = new Level(
         'Hello', [
-            new MovingBlock({ x: 50, y: 50 }, { height: 455, width: 12 }, 50, 0.4),
-            new Blocks({ x: 232, y: 112 }, { height: 23, width: 56 }),
-            new MovingBlock({ x: 50, y: 500 }, { height: 16, width: 500 }, 250, 2.4, MovingBlock.VERTICAL),
+            new MovingEntity({ x: 50, y: 50 }, { height: 455, width: 12 }, 50, 0.4),
+            new Entitys({ x: 232, y: 112 }, { height: 23, width: 56 }),
+            new MovingEntity({ x: 50, y: 500 }, { height: 16, width: 500 }, 250, 2.4, MovingEntity.VERTICAL),
         ])
     document.getElementById("title").innerHTML = level.name
 
@@ -11,7 +11,7 @@ function levelController() {
 
     setInterval(
         () => {
-            level.blocks.forEach(element => {
+            level.Entitys.forEach(element => {
                 element.onTick(1)
             });
             buildLvl(level)
@@ -26,7 +26,7 @@ function buildLvl(level) {
         game.removeChild(game.firstChild);
     }
 
-    level.blocks.forEach(element => {
+    level.Entitys.forEach(element => {
         game.appendChild(element.createHtml())
     });
 
