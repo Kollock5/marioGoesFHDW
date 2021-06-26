@@ -1,4 +1,4 @@
-class Blocks {
+class Entity {
     constructor(pos, size) {
         this.pos = pos;
         this.size = size;
@@ -8,7 +8,7 @@ class Blocks {
 
     createHtml() {
         var newElement = document.createElement("div");
-        newElement.setAttribute('class', "block")
+        newElement.setAttribute('class', "Entity")
         newElement.style.bottom = this.pos.x + ".px"
         newElement.style.left = this.pos.y + ".px"
         newElement.style.height = this.size.height + ".px"
