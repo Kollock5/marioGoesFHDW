@@ -1,6 +1,6 @@
 class Level {
-    constructor(name, blocks) {
+    constructor(name, Entitys) {
         this.name = name;
-        this.blocks = blocks;
+        this.Entitys = Entitys;
     }
 }
