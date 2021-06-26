@@ -1,7 +1,7 @@
 const VERTICAL = 0
 const HORIZONTAL = 1
 
-class MovingEntity extends Entitys {
+class MovingEntity extends Entity {
     constructor(pos, size, extendingDistance, speed, direction = HORIZONTAL) {
         super(pos, size)
         this.extendingDistance = extendingDistance
