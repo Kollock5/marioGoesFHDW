@@ -27,15 +27,7 @@ function buildLvl(level) {
     }
 
     level.blocks.forEach(element => {
-        var newElement = document.createElement("div");
-        newElement.setAttribute('id', element.id)
-        newElement.setAttribute('class', "block")
-        newElement.style.bottom = element.pos.x + ".px"
-        newElement.style.left = element.pos.y + ".px"
-        newElement.style.height = element.size.height + ".px"
-        newElement.style.width = element.size.width + ".px"
-
-        game.appendChild(newElement)
+        game.appendChild(element.createHtml())
     });
 
 }
