@@ -1,9 +1,7 @@
 export class Property {
-    constructor() {
+    constructor() {}
 
-    }
+    onTick(entity, level) {}
 
-    onTick(entity, level) {
-
-    }
+    onColision(us, them) {}
 }

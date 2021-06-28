@@ -1,9 +1,9 @@
 import { keys } from "./keys.js";
 
 export class Level {
-    constructor(name, Entities) {
+    constructor(name, entities) {
         this.name = name;
-        this.Entities = Entities;
+        this.entities = entities;
         this.keys = keys.init()
         this.tick = 0
         this.gameSpeed = 1000 / 30
@@ -18,7 +18,7 @@ export class Level {
 
     gameTick() {
         this.tick++;
-        this.Entities.forEach(element => {
+        this.entities.forEach(element => {
             element.onTick(this)
         });
         this.buildLvl()
@@ -30,7 +30,7 @@ export class Level {
             game.removeChild(game.firstChild);
         }
 
-        this.Entities.forEach(element => {
+        this.entities.forEach(element => {
             game.appendChild(element.createHtml())
         });
     }
