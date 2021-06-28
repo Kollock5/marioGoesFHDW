@@ -1,40 +1,12 @@
 import { Entity } from "../Entity.js"
+import { AlternatingMovement } from "../properties/AlternatingMovement.js"
 
-export const VERTICAL = 0
-export const HORIZONTAL = 1
 
+//TODO: Remove example class 
 export class MovingBlock extends Entity {
-    constructor(pos, size, extendingDistance, speed, direction = HORIZONTAL) {
+    constructor(pos, size) {
         super(pos, size)
-        this.extendingDistance = extendingDistance
-        this.speed = speed
-        this.turnPoint = true
-        this.direction = direction
-        if (direction == HORIZONTAL) {
-            this.startPos = pos.y
-            this.internalPos = pos.y
-        } else {
-            this.startPos = pos.x
-            this.internalPos = pos.x
-        }
+        super.addProperties(new AlternatingMovement(this, 250, 2.4, AlternatingMovement.VERTICAL))
     }
 
-    onTick = function onTick(tick) {
-        if (this.turnPoint) {
-            if (this.internalPos >= this.startPos + this.extendingDistance) {
-                this.turnPoint = false
-            }
-            this.internalPos = this.internalPos + this.speed;
-        } else {
-            if (this.internalPos <= this.startPos) {
-                this.turnPoint = true
-            }
-            this.internalPos = this.internalPos - this.speed;
-        }
-        if (this.direction == HORIZONTAL) {
-            this.pos.y = Math.round(this.internalPos)
-        } else {
-            this.pos.x = Math.round(this.internalPos)
-        }
-    }
 }
