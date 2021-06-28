@@ -3,7 +3,7 @@ export class Property {
 
     }
 
-    onTick(entity, level, tick) {
+    onTick(entity, level) {
 
     }
 }

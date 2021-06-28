@@ -5,7 +5,9 @@ export class Level {
         this.name = name;
         this.Entities = Entities;
         this.keys = keys.init()
-        this.gameSpeed = 10
+        this.tick = 0
+        this.gameSpeed = 1000 / 30
+        this.gravity = 1
     }
 
     init() {
@@ -15,8 +17,9 @@ export class Level {
     }
 
     gameTick() {
+        this.tick++;
         this.Entities.forEach(element => {
-            element.onTick(1)
+            element.onTick(this)
         });
         this.buildLvl()
     }
