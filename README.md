@@ -2,6 +2,14 @@
 
 Mario ist auf der suche nach seinem Bachelorabschluss und muss verschiedene hindernisse überwinden um diesen zu erreichen.
 
+# Setting up the Project
+
+1. clone the project
+
+2. install a local webserver (xampp or python SimpleHTTPServer or other)
+
+3. start the webserver in your directory (with python form console "python -m SimpleHTTPServer 8000")
+
 # Github branch rules 
 
  neue branch soll beschreiben was der neue code tut 
