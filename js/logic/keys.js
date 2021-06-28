@@ -1,4 +1,4 @@
-var keys = {
+export var keys = {
     accelerate: false,
     left: false,
     up: false,
