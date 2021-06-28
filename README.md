@@ -23,7 +23,7 @@ https://kollock5.github.io/marioGoesFHDW/
  
  # Github merge
  
- Beim pull request auf main ist ein review vom code erforderlich
+ Beim pull request auf main ist ein code review erforderlich
  
  # Github Hilfe
  
