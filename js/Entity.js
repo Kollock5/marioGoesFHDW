@@ -6,12 +6,7 @@ export class Entity {
         this.properties = properties
     }
 
-    onTick(level, tick) {
-        this.properties.forEach(property => {
-            property.onTick(this, level)
-        });
-    }
-
+    //TODO: replace with something more modular/smarter maybe as a Property
     createHtml() {
         var newElement = document.createElement("div");
         newElement.setAttribute('class', "Entity")
@@ -25,5 +20,17 @@ export class Entity {
 
     addProperties(property) {
         this.properties.push(property)
+    }
+
+    onTick(level, tick) {
+        this.properties.forEach(property => {
+            property.onTick(this, level)
+        });
+    }
+
+    onColision(us, them) {
+        this.properties.forEach(porperty => {
+            property.onColision(us, them)
+        });
     }
 }
