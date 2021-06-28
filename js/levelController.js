@@ -1,3 +1,8 @@
+import { Level } from "./data/Level.js";
+import { Entity } from "./data/Entity.js";
+import { MovingEntity } from "./data/MovingEntity.js";
+import { keys } from "./logic/keys.js";
+
 function levelController() {
     var level = new Level(
         'Hello', [
@@ -31,3 +36,5 @@ function buildLvl(level) {
         game.appendChild(element.createHtml())
     });
 }
+
+levelController()
