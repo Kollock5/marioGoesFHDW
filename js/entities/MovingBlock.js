@@ -1,9 +1,9 @@
-import { Entity } from "./Entity.js"
+import { Entity } from "../Entity.js"
 
 export const VERTICAL = 0
 export const HORIZONTAL = 1
 
-export class MovingEntity extends Entity {
+export class MovingBlock extends Entity {
     constructor(pos, size, extendingDistance, speed, direction = HORIZONTAL) {
         super(pos, size)
         this.extendingDistance = extendingDistance
