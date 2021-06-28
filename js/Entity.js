@@ -1,8 +1,8 @@
 export class Entity {
-    constructor(pos, size) {
+    constructor(pos, size, properties = []) {
         this.pos = pos;
         this.size = size;
-        this.properties = []
+        this.properties = properties
     }
 
     onTick(level, tick) {
