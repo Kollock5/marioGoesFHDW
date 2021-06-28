@@ -19,7 +19,7 @@ export class AlternatingMovement extends Property {
         }
     }
 
-    onTick = function onTick(entity, level, tick) {
+    onTick = function onTick(entity, level) {
         if (this.turnPoint) {
             if (this.internalPos >= this.startPos + this.extendingDistance) {
                 this.turnPoint = false

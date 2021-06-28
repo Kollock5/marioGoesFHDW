@@ -1,13 +1,14 @@
 export class Entity {
     constructor(pos, size, properties = []) {
         this.pos = pos;
+        this.vel = { x: 0, y: 0 };
         this.size = size;
         this.properties = properties
     }
 
     onTick(level, tick) {
         this.properties.forEach(property => {
-            property.onTick(this, level, tick)
+            property.onTick(this, level)
         });
     }
 
