@@ -9,7 +9,7 @@ https://kollock5.github.io/marioGoesFHDW/
 1. clone the project
 
 2. install a local webserver (xampp or python SimpleHTTPServer or other)
- python link -> https://www.python.org/downloads/release/
+ python link -> https://www.python.org/downloads/windows/
 
 3. start the webserver in your directory (with python form console "python -m SimpleHTTPServer 8000")
 
