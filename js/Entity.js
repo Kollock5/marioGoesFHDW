@@ -4,6 +4,7 @@ export class Entity {
         this.vel = { x: 0, y: 0 };
         this.size = size;
         this.properties = properties
+        this.previousCollisons = []
     }
 
     //TODO: replace with something more modular/smarter maybe as a Property
@@ -22,15 +23,21 @@ export class Entity {
         this.properties.push(property)
     }
 
-    onTick(level, tick) {
+    onStart(level) {
+        this.previousCollisons = []
+    }
+
+    onTick(level) {
         this.properties.forEach(property => {
             property.onTick(this, level)
         });
     }
 
     onCollision(them) {
-        this.properties.forEach(property => {
-            property.onCollision(this, them)
-        });
+        if (!this.previousCollisons.includes(them)) {
+            this.properties.forEach(property => {
+                property.onCollision(this, them)
+            });
+        }
     }
 }

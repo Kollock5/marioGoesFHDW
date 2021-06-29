@@ -19,6 +19,9 @@ export class Level {
     gameTick() {
         this.tick++;
         this.entities.forEach(element => {
+            element.onStart(this)
+        });
+        this.entities.forEach(element => {
             element.onTick(this)
         });
         this.buildLvl()
