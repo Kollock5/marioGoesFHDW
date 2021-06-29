@@ -28,9 +28,9 @@ export class Entity {
         });
     }
 
-    onColision(us, them) {
-        this.properties.forEach(porperty => {
-            property.onColision(us, them)
+    onCollision(them) {
+        this.properties.forEach(property => {
+            property.onCollision(this, them)
         });
     }
 }

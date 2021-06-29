@@ -37,4 +37,8 @@ export class AlternatingMovement extends Property {
             entity.pos.x = Math.round(this.internalPos)
         }
     }
+
+    onCollision = function onCollision(us, them) {
+
+    }
 }

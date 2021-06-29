@@ -1,4 +1,4 @@
-import { keys } from "./keys.js";
+import { keys } from "./util/keys.js";
 
 export class Level {
     constructor(name, entities) {
