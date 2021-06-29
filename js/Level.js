@@ -1,4 +1,4 @@
-import { keys } from "./keys.js";
+import { keys } from "./util/keys.js";
 
 export class Level {
     constructor(name, entities) {
@@ -18,6 +18,9 @@ export class Level {
 
     gameTick() {
         this.tick++;
+        this.entities.forEach(element => {
+            element.onStart(this)
+        });
         this.entities.forEach(element => {
             element.onTick(this)
         });

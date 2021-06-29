@@ -3,5 +3,5 @@ export class Property {
 
     onTick(entity, level) {}
 
-    onColision(us, them) {}
+    onCollision(us, them) {}
 }
