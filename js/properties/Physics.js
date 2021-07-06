@@ -1,5 +1,5 @@
 import { Property } from "../Property.js";
-import { collisonDetection } from "../util/CollisonDetection.js";
+import { collisionDetection } from "../util/collisionDetection.js";
 
 
 export class Physics extends Property {
@@ -8,22 +8,22 @@ export class Physics extends Property {
     }
 
     onTick = function onTick(entity, level) {
-        var collisonX = collisonDetection.checkXAxisColliding(level, entity);
-        var collisonY = collisonDetection.checkYAxisColliding(level, entity);
-        if (collisonX.collider != null) {
-            entity.pos.x = collisonX.collisonPos
+        var collisionX = collisionDetection.checkXAxisColliding(level, entity);
+        var collisionY = collisionDetection.checkYAxisColliding(level, entity);
+        if (collisionX.collider != null) {
+            entity.pos.x = collisionX.collisionPos
             entity.vel.x = 0
-            entity.onCollision(collisonX.collider)
-            collisonX.collider.onCollision(entity)
+            entity.onCollision(collisionX.collider)
+            collisionX.collider.onCollision(entity)
         } else {
             entity.pos.x = entity.pos.x + entity.vel.x
         }
-        if (collisonY.collider != null) {
-            entity.pos.y = collisonY.collisonPos
+        if (collisionY.collider != null) {
+            entity.pos.y = collisionY.collisionPos
             entity.vel.y = 0
-            if (collisonY.collider != collisonY.collider) {
-                entity.onCollision(collisonY.collider)
-                collisonY.onCollision.collider(entity)
+            if (collisionY.collider != collisionY.collider) {
+                entity.onCollision(collisionY.collider)
+                collisionY.onCollision.collider(entity)
             }
         } else {
             entity.pos.y = entity.pos.y + entity.vel.y
