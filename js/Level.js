@@ -7,7 +7,7 @@ export class Level {
         this.keys = keys.init()
         this.tick = 0
         this.gameSpeed = 1000 / 30
-        this.gravity = 1
+        this.gravity = -1
     }
 
     init() {
@@ -29,12 +29,14 @@ export class Level {
 
     buildLvl() {
         var game = document.getElementById("game")
-        while (game.hasChildNodes()) {
-            game.removeChild(game.firstChild);
-        }
-
+            // while (game.hasChildNodes()) {
+            //     game.removeChild(game.firstChild);
+            // }
+        var context = game.getContext("2d")
+        context.fillStyle = "#FF0000";
+        context.clearRect(0, 0, game.width, game.height);
         this.entities.forEach(element => {
-            game.appendChild(element.createHtml())
+            context.fillRect(element.pos.x, element.pos.y, element.size.height, element.size.width);
         });
     }
 }
