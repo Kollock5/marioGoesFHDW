@@ -1,44 +1,43 @@
 import { Property } from "../Property.js";
+import { collisionDetection } from "../util/collisionDetection.js";
 
 export const VERTICAL = 0
 export const HORIZONTAL = 1
 
 export class AlternatingMovement extends Property {
-    constructor(entity, extendingDistance, speed, direction = HORIZONTAL) {
+    constructor(entity, extendingDistance, speed) {
         super()
         this.extendingDistance = extendingDistance
         this.speed = speed
-        this.turnPoint = true
-        this.direction = direction
-        if (direction == HORIZONTAL) {
-            this.startPos = entity.pos.y
-            this.internalPos = entity.pos.y
-        } else {
-            this.startPos = entity.pos.x
-            this.internalPos = entity.pos.x
-        }
+        this.interval = Math.abs(this.extendingDistance / this.speed.length())
     }
 
     onTick = function onTick(entity, level) {
-        if (this.turnPoint) {
-            if (this.internalPos >= this.startPos + this.extendingDistance) {
-                this.turnPoint = false
-            }
-            this.internalPos = this.internalPos + this.speed;
-        } else {
-            if (this.internalPos <= this.startPos) {
-                this.turnPoint = true
-            }
-            this.internalPos = this.internalPos - this.speed;
+        if (this.interval <= 0) {
+            this.interval = Math.abs(this.extendingDistance / this.speed.length())
+            this.speed.set(-this.speed.x, -this.speed.y)
         }
-        if (this.direction == HORIZONTAL) {
-            entity.pos.y = Math.round(this.internalPos)
-        } else {
-            entity.pos.x = Math.round(this.internalPos)
-        }
+        entity.velocity.set(this.speed.x, this.speed.y)
+        this.interval = this.interval - 1
+    }
+
+    onStop = function(entity, level) {
+        this.collisions = collisionDetection.allCollision(entity, level);
+        this.collisions.forEach(collision => {
+            if (collision.collisionTime.x < collision.collisionTime.y) {
+                collision.entity.velocity.x = (entity.velocity.x)
+
+            } else {
+                collision.entity.velocity.y = (entity.velocity.y)
+            }
+            entity.onCollision(entity, collision.entity)
+            collision.entity.onCollision(collision.entity, entity)
+        })
+        entity.pos.add(entity.velocity)
     }
 
     onCollision = function onCollision(us, them) {
 
     }
+
 }
