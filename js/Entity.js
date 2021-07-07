@@ -5,8 +5,8 @@ export class Entity {
         this.pos = pos;
         this.velocity = new Vector(0, 0)
         this.acceleration = new Vector(0, 0)
-
         this.size = size;
+        this.movable = false
         this.properties = properties
     }
 

@@ -7,8 +7,22 @@ export class Physics extends Property {
         super()
     }
 
-    onTick = function onFinalTick(entity, level) {
+    onTick = function(entity, level) {
         entity.velocity.add(entity.acceleration)
+
+        if (entity.velocity.x < -10) {
+            entity.velocity.x = -10
+        }
+        if (entity.velocity.x > 10) {
+            entity.velocity.x = 10
+        }
+        if (entity.velocity.y < -10) {
+            entity.velocity.y = -10
+        }
+        if (entity.velocity.y > 10) {
+            entity.velocity.y = 10
+        }
+
         entity.acceleration.set(0, 0)
     }
 

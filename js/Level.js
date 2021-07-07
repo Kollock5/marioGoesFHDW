@@ -7,9 +7,9 @@ export class Level {
         this.entities = entities;
         this.keys = keys.init()
         this.tick = 0
-        this.gameSpeed = 1000 / 30
-        this.gravity = new Vector(-0.1, 0.4)
-            // this.gravity = new Vector(0, 0.1)
+        this.gameSpeed = 1000 / 60
+            // this.gravity = new Vector(0.5, 0.4)
+        this.gravity = new Vector(0, 0.9)
 
     }
 

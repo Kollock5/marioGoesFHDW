@@ -6,7 +6,7 @@ import { Vector } from "../util/Vector.js"
 export class MovingBlock extends Entity {
     constructor(pos, size) {
         super(pos, size)
-        super.properties = [new AlternatingMovement(this, 150, new Vector(0.2, 0.5))]
+        super.properties = [new AlternatingMovement(this, 150, new Vector(0, 0.5))]
     }
 
 }
