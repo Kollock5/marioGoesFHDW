@@ -5,7 +5,7 @@ export class Gravity extends Property {
         super()
     }
 
-    onTick = function onTick(entity, level) {
+    onTick = function(entity, level) {
         entity.acceleration.add(level.gravity)
 
     }

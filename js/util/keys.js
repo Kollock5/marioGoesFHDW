@@ -15,7 +15,7 @@ export var keys = {
     },
     handler: function(event, status) {
         switch (event.key) {
-            case "Ctrg":
+            case "Ctrl":
                 keys.accelerate = status
                 break;
             case "ArrowDown":
