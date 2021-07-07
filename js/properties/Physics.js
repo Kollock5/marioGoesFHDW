@@ -14,7 +14,7 @@ export class Physics extends Property {
 
     onStop = function(entity, level) {
         for (let i = 0; i < 2.; i++) {
-            this.collision = collisionDetection.collisionDetection(entity, level);
+            this.collision = collisionDetection.nearestCollision(entity, level);
             if (this.collision != null) {
                 if (this.collision.collisionTime.x < this.collision.collisionTime.y) {
                     entity.velocity.x = entity.velocity.x * this.collision.collisionTime.x

@@ -1,9 +1,26 @@
 import { Vector } from "./Vector.js";
-//collision Detection Version: 4 
-
+//collision Detection Version: 4
 
 export var collisionDetection = {
-    collisionDetection: function(entity, level) {
+
+    allCollision: function(entity, level) {
+        this.collisions = []
+        level.entities.forEach(them => {
+            if (entity != them) {
+                if (this.checkColliding(entity, them)) {
+                    this.distance = this.calculateDistance(entity, them)
+                    this.collisionTime = new Vector(
+                        entity.velocity.x != 0 ? Math.abs(this.distance.x / entity.velocity.x) : Infinity,
+                        entity.velocity.y != 0 ? Math.abs(this.distance.y / entity.velocity.y) : Infinity
+                    )
+                    this.collisions.push({ entity: them, collisionTime: this.collisionTime })
+                }
+            }
+        });
+        return this.collisions
+    },
+
+    nearestCollision: function(entity, level) {
         this.collisions = []
         level.entities.forEach(them => {
             if (entity != them) {
