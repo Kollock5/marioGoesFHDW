@@ -5,7 +5,7 @@ import { AlternatingMovement } from "../properties/AlternatingMovement.js"
 export class MovingBlock extends Entity {
     constructor(pos, size) {
         super(pos, size)
-        super.addProperties(new AlternatingMovement(this, 250, 2.4, AlternatingMovement.VERTICAL))
+        super.properties = [new AlternatingMovement(this, 250, 2.4, AlternatingMovement.VERTICAL)]
     }
 
 }

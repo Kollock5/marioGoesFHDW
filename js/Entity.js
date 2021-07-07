@@ -1,31 +1,27 @@
+import { Vector } from "./util/Vector.js";
+
 export class Entity {
     constructor(pos, size, properties = []) {
         this.pos = pos;
-        this.vel = { x: 0, y: 0 };
+        this.velocity = new Vector(0, 0)
+        this.acceleration = new Vector(0, 0)
+
         this.size = size;
         this.properties = properties
-        this.previousCollisons = []
     }
 
-    // //TODO: replace with something more modular/smarter maybe as a Property
-    // createHtml() {
-    //     var newElement = document.createElement("div");
-    //     newElement.setAttribute('class', "Entity")
-    //     newElement.style.bottom = this.pos.x + ".px"
-    //     newElement.style.left = this.pos.y + ".px"
-    //     newElement.style.height = this.size.height + ".px"
-    //     newElement.style.width = this.size.width + ".px"
-
-    //     return newElement
-    // }
-
-    addProperties(property) {
+    addProperties(property, level) {
         this.properties.push(property)
+        property.onCreate(level)
     }
 
-    onStart(level) {
-        this.previousCollisons = []
+    onCreate(level) {
+        this.properties.forEach(property => {
+            property.onCreate(this, level)
+        });
     }
+
+    onStart(level) {}
 
     onTick(level) {
         this.properties.forEach(property => {
@@ -34,10 +30,14 @@ export class Entity {
     }
 
     onCollision(them) {
-        if (!this.previousCollisons.includes(them)) {
-            this.properties.forEach(property => {
-                property.onCollision(this, them)
-            });
-        }
+        this.properties.forEach(property => {
+            property.onCollision(this, them)
+        });
+    }
+
+    onStop(level) {
+        this.properties.forEach(property => {
+            property.onStop(this, level)
+        });
     }
 }

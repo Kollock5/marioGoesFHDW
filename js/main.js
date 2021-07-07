@@ -3,18 +3,20 @@ import { Entity } from "./Entity.js";
 import { MovingBlock } from "./entities/MovingBlock.js";
 import { Gravity } from "./properties/Gravity.js";
 import { Physics } from "./properties/Physics.js";
+import { Vector } from "./util/Vector.js";
 
 function main() {
     var level = new Level(
         'Hello', [
-            new MovingBlock({ x: 50, y: 350 }, { height: 455, width: 12 }),
-            new Entity({ x: 0, y: 0 }, { height: 1, width: 1 }),
-            new Entity({ x: 10, y: 0 }, { height: 5, width: 15 }),
-            new Entity({ x: 132, y: 412 }, { height: 56, width: 56 }, [new Gravity(), new Physics]),
-            new Entity({ x: 400, y: 10 }, { height: 56, width: 56 }, [new Gravity(), new Physics]),
-            new Entity({ x: 10, y: 0 }, { height: 5, width: 1000 }),
-            new MovingBlock({ x: 550, y: 20 }, { height: 16, width: 500 }),
-            new Entity({ x: 50, y: 700 }, { height: 500, width: 10 }),
+            new MovingBlock(new Vector(50, 350), new Vector(455, 12)),
+            new Entity(new Vector(0, 0), new Vector(1, 1)),
+            new Entity(new Vector(10, 0), new Vector(5, 15)),
+            new Entity(new Vector(132, 212), new Vector(56, 56), [new Gravity(), new Physics]),
+            new Entity(new Vector(400, 50), new Vector(56, 56), [new Gravity(), new Physics]),
+            new Entity(new Vector(10, 0), new Vector(5, 1000)),
+            new Entity(new Vector(10, 0), new Vector(500, 10)),
+            new MovingBlock(new Vector(550, 20), new Vector(16, 500)),
+            new Entity(new Vector(50, 700), new Vector(500, 10)),
 
         ]).init()
 }

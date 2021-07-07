@@ -7,26 +7,26 @@ export class Physics extends Property {
         super()
     }
 
-    onTick = function onTick(entity, level) {
-        var collisionX = collisionDetection.checkXAxisColliding(level, entity);
-        var collisionY = collisionDetection.checkYAxisColliding(level, entity);
-        if (collisionX.collider != null) {
-            entity.pos.x = collisionX.collisionPos
-            entity.vel.x = 0
-            entity.onCollision(collisionX.collider)
-            collisionX.collider.onCollision(entity)
-        } else {
-            entity.pos.x = entity.pos.x + entity.vel.x
-        }
-        if (collisionY.collider != null) {
-            entity.pos.y = collisionY.collisionPos
-            entity.vel.y = 0
-            if (collisionY.collider != collisionY.collider) {
-                entity.onCollision(collisionY.collider)
-                collisionY.onCollision.collider(entity)
+    onTick = function onFinalTick(entity, level) {
+        entity.velocity.add(entity.acceleration)
+        entity.acceleration.set(0, 0)
+    }
+
+    onStop = function(entity, level) {
+        for (let i = 0; i < 2.; i++) {
+            this.collision = collisionDetection.collisionDetection(entity, level);
+            if (this.collision != null) {
+                if (this.collision.collisionTime.x < this.collision.collisionTime.y) {
+                    entity.velocity.x = entity.velocity.x * this.collision.collisionTime.x
+                } else {
+                    entity.velocity.y = entity.velocity.y * this.collision.collisionTime.y
+                }
+                entity.onCollision(entity, this.collision.entity)
+                this.collision.entity.onCollision(this.collision.entity, entity)
+            } else {
+                break
             }
-        } else {
-            entity.pos.y = entity.pos.y + entity.vel.y
         }
+        entity.pos.add(entity.velocity)
     }
 }
