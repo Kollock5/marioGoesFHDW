@@ -15,6 +15,7 @@ export class levelEditor {
         this.entities = []
         this.activeEntity = null
         this.posY = GRID_SIZE
+        this.offset = new Vector(0, 0)
 
         this.blueprints.forEach(item => {
             item.pos.set((SELECTION_SIZE - item.size.x) / 2, this.posY);
@@ -72,7 +73,7 @@ export class levelEditor {
         context.fillStyle = "#FF0000";
 
         this.entities.forEach(element => {
-            element.draw(context)
+            element.draw(context, this.offset)
         });
 
         for (let i = 0; i < 60; i++) {
@@ -84,13 +85,13 @@ export class levelEditor {
         }
 
         if (this.activeEntity != null) {
-            this.activeEntity.draw(context)
+            this.activeEntity.draw(context, this.offset)
         }
 
         context.fillStyle = "#00FF00";
         context.fillRect(0, 0, SELECTION_SIZE, game.height);
         this.blueprints.forEach(element => {
-            element.draw(context)
+            element.draw(context, this.offset)
         });
     }
 }

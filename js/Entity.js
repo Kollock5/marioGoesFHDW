@@ -46,8 +46,8 @@ export class Entity {
         });
     }
 
-    draw(context) {
-        context.drawImage(this.image, this.animationState * this.size.y, 0, this.size.x, this.size.y, this.pos.x, this.pos.y, this.size.x, this.size.y)
+    draw(context, offset) {
+        context.drawImage(this.image, this.animationState * this.size.y, 0, this.size.x, this.size.y, (this.pos.x + offset.x), (this.pos.y + offset.y), this.size.x, this.size.y)
     }
 
     clone() {

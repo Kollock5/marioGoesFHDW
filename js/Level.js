@@ -7,6 +7,7 @@ export class Level {
         this.entities = entities;
         this.keys = keys.init()
         this.tick = 0
+        this.offset = new Vector(0, 0)
         this.gameSpeed = 1000 / 60
             // this.gravity = new Vector(0.5, 0.4)
         this.gravity = new Vector(0, 0.9)
@@ -40,7 +41,7 @@ export class Level {
         context.fillStyle = "#FF0000";
         context.clearRect(0, 0, game.width, game.height);
         this.entities.forEach(element => {
-            element.draw(context)
+            element.draw(context, this.offset)
         });
     }
 }
