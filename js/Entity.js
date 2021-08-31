@@ -1,13 +1,18 @@
 import { Vector } from "./util/Vector.js";
 
 export class Entity {
-    constructor(pos, size, properties = [], velocity = new Vector(0, 0), acceleration = new Vector(0, 0), movable = false) {
+    constructor(pos, size, imgSrc = "../res/missingTexture.png", properties = [], velocity = new Vector(0, 0), acceleration = new Vector(0, 0), movable = false) {
         this.pos = pos;
         this.size = size;
         this.properties = properties
         this.velocity = velocity
         this.acceleration = acceleration
         this.movable = movable
+        this.animationState = 0
+
+        this.image = new Image()
+        this.imgSrc = imgSrc
+        this.image.src = imgSrc
     }
 
     addProperties(property, level) {
@@ -41,16 +46,21 @@ export class Entity {
         });
     }
 
+    draw(context) {
+        context.drawImage(this.image, this.animationState * this.size.y, 0, this.size.x, this.size.y, this.pos.x, this.pos.y, this.size.x, this.size.y)
+    }
+
     clone() {
         let clonedProperties = []
         this.properties.forEach(property => {
             clonedProperties.push(property.clone())
         });
-        return new Entity(this.pos.clone(), this.size.clone(), clonedProperties, this.velocity.clone(), this.acceleration.clone(), this.movable)
+        return new Entity(this.pos.clone(), this.size.clone(), this.imgSrc, clonedProperties, this.velocity.clone(), this.acceleration.clone(), this.movable)
     }
 
     toJson() {
-        let json = `{ "pos": ${this.pos.toJson()}, "size": ${this.size.toJson()}, "velocity": ${this.velocity.toJson()}, "acceleration": ${this.acceleration.toJson()}, "movable": ${this.movable}, "properties": [ `
+        console.log(this.imgSrc)
+        let json = `{ "pos": ${this.pos.toJson()}, "size": ${this.size.toJson()}, "imgSrc": "${this.imgSrc}", "velocity": ${this.velocity.toJson()}, "acceleration": ${this.acceleration.toJson()}, "movable": ${this.movable}, "properties": [ `
         this.properties.forEach(function(property, i, arr) {
             json = json + property.toJson()
             if (i < arr.length - 1) {

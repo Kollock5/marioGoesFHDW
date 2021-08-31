@@ -5,4 +5,4 @@ import { Physics } from "../properties/Physics.js"
 import { Player } from "../properties/Player.js"
 
 
-export function Mario(pos) { return new Entity(pos, new Vector(32, 64), [new Gravity, new Physics, new Player]) }
+export function Mario(pos) { return new Entity(pos, new Vector(32, 64), "../res/missingTexture.png", [new Gravity, new Physics, new Player]) }

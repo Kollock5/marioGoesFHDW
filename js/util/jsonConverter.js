@@ -26,6 +26,7 @@ export var jsonConverter = {
             entities.push(new Entity(
                 this.newVector(entity.pos),
                 this.newVector(entity.size),
+                entity.imgSrc,
                 this.getProperties(entity.properties),
                 this.newVector(entity.velocity),
                 this.newVector(entity.acceleration),
