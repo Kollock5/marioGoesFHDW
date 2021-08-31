@@ -1,5 +1,6 @@
 export var keys = {
-    accelerate: false,
+    alt: false,
+    shift: false,
     left: false,
     up: false,
     right: false,
@@ -15,8 +16,11 @@ export var keys = {
     },
     handler: function(event, status) {
         switch (event.key) {
-            case "Ctrl":
-                keys.accelerate = status
+            case "Alt":
+                keys.alt = status
+                break;
+            case "Shift":
+                keys.shift = status
                 break;
             case "ArrowDown":
                 keys.down = status

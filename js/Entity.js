@@ -46,7 +46,7 @@ export class Entity {
         });
     }
 
-    draw(context, offset) {
+    draw(context, offset = new Vector(0, 0)) {
         context.drawImage(this.image, this.animationState * this.size.y, 0, this.size.x, this.size.y, (this.pos.x + offset.x), (this.pos.y + offset.y), this.size.x, this.size.y)
     }
 
