@@ -44,7 +44,7 @@ export class levelEditor {
             } else {
                 if (this.mouse.x > SELECTION_SIZE) {
                     this.collision = collisionDetection.allCollision(this.activeEntity, this.entities)
-                    if (this.collision.length < 2) {
+                    if (this.collision.length < 1) {
                         this.activeEntity = null
                     }
                 }
@@ -69,22 +69,28 @@ export class levelEditor {
         var game = document.getElementById("game")
         var context = game.getContext("2d")
         context.clearRect(0, 0, game.width, game.height);
-        context.fillStyle = "#00FF00";
-        context.fillRect(0, 0, SELECTION_SIZE, game.height);
         context.fillStyle = "#FF0000";
-        this.blueprints.forEach(element => {
-            element.draw(context)
-        });
 
         this.entities.forEach(element => {
             element.draw(context)
         });
-        for (let i = 0; i < 35; i++) {
+
+        for (let i = 0; i < 60; i++) {
             context.fillRect(SELECTION_SIZE + (GRID_SIZE * i), 1, 1, 2000)
         }
 
-        for (let i = 0; i < 25; i++) {
+        for (let i = 0; i < 35; i++) {
             context.fillRect(SELECTION_SIZE + 1, (GRID_SIZE * i), 2000, 1)
         }
+
+        if (this.activeEntity != null) {
+            this.activeEntity.draw(context)
+        }
+
+        context.fillStyle = "#00FF00";
+        context.fillRect(0, 0, SELECTION_SIZE, game.height);
+        this.blueprints.forEach(element => {
+            element.draw(context)
+        });
     }
 }
