@@ -406,6 +406,9 @@ export var dev1 = `{
                 },
                 {
                     "type": "Player"
+                },
+                {
+                    "type": "Camera"
                 }
             ]
         }
