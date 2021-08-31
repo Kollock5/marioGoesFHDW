@@ -26,8 +26,15 @@ export class Player extends Property {
         if (keys.down == true) {
             entity.acceleration.add(new Vector(0, 0.5))
         }
-        console.log(entity.pos)
-            // entity.velocity.add(entity.acceleration)
-            // entity.acceleration.set(0, 0)
+        // entity.velocity.add(entity.acceleration)
+        // entity.acceleration.set(0, 0)
+    }
+
+    toJson = function() {
+        return '{ "type": "Player" }'
+    }
+
+    clone = function() {
+        return new Player()
     }
 }

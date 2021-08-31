@@ -1,5 +1,6 @@
 import { Property } from "../Property.js";
 import { collisionDetection } from "../util/collisionDetection.js";
+import { Gravity } from "./Gravity.js";
 
 
 export class Physics extends Property {
@@ -28,7 +29,7 @@ export class Physics extends Property {
 
     onStop = function(entity, level) {
         for (let i = 0; i < 2.; i++) {
-            this.collision = collisionDetection.nearestCollision(entity, level);
+            this.collision = collisionDetection.nearestCollision(entity, level.entities);
             if (this.collision != null) {
                 if (this.collision.collisionTime.x < this.collision.collisionTime.y) {
                     entity.velocity.x = entity.velocity.x * this.collision.collisionTime.x
@@ -42,5 +43,13 @@ export class Physics extends Property {
             }
         }
         entity.pos.add(entity.velocity)
+    }
+
+    toJson = function() {
+        return '{ "type": "Physics" }'
+    }
+
+    clone = function() {
+        return new Physics()
     }
 }
