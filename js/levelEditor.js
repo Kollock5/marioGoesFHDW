@@ -73,11 +73,11 @@ export class levelEditor {
         context.fillRect(0, 0, SELECTION_SIZE, game.height);
         context.fillStyle = "#FF0000";
         this.blueprints.forEach(element => {
-            context.fillRect(element.pos.x, element.pos.y, element.size.x, element.size.y);
+            element.draw(context)
         });
 
         this.entities.forEach(element => {
-            context.fillRect(element.pos.x, element.pos.y, element.size.x, element.size.y);
+            element.draw(context)
         });
         for (let i = 0; i < 35; i++) {
             context.fillRect(SELECTION_SIZE + (GRID_SIZE * i), 1, 1, 2000)
