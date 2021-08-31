@@ -3,9 +3,9 @@ import { Vector } from "./Vector.js";
 
 export var collisionDetection = {
 
-    allCollision: function(entity, level) {
+    allCollision: function(entity, entities) {
         this.collisions = []
-        level.entities.forEach(them => {
+        entities.forEach(them => {
             if (entity != them) {
                 if (this.checkColliding(entity, them)) {
                     this.distance = this.calculateDistance(entity, them)
@@ -20,9 +20,9 @@ export var collisionDetection = {
         return this.collisions
     },
 
-    nearestCollision: function(entity, level) {
+    nearestCollision: function(entity, entities) {
         this.collisions = []
-        level.entities.forEach(them => {
+        entities.forEach(them => {
             if (entity != them) {
                 if (this.checkColliding(entity, them)) {
                     this.distance = this.calculateDistance(entity, them)

@@ -14,8 +14,6 @@ export class Level {
     }
 
     init() {
-        document.getElementById("title").innerHTML = this.name
-
         this.entities.forEach(element => {
             element.onCreate(this)
         });
