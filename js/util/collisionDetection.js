@@ -3,9 +3,9 @@ import { Vector } from "./Vector.js";
 
 export var collisionDetection = {
 
-    allCollision: function(entity, level) {
+    allCollision: function(entity, entities) {
         this.collisions = []
-        level.entities.forEach(them => {
+        entities.forEach(them => {
             if (entity != them) {
                 if (this.checkColliding(entity, them)) {
                     this.distance = this.calculateDistance(entity, them)
@@ -13,16 +13,17 @@ export var collisionDetection = {
                         entity.velocity.x != 0 ? Math.abs(this.distance.x / entity.velocity.x) : Infinity,
                         entity.velocity.y != 0 ? Math.abs(this.distance.y / entity.velocity.y) : Infinity
                     )
-                    this.collisions.push({ entity: them, collisionTime: this.collisionTime })
+                    this.collisionSide = this.checkCollisionSide(entity.velocity, this.distance)
+                    this.collisions.push({ entity: them, collisionTime: this.collisionTime, collisionSide: this.collisionSide })
                 }
             }
         });
         return this.collisions
     },
 
-    nearestCollision: function(entity, level) {
+    nearestCollision: function(entity, entities) {
         this.collisions = []
-        level.entities.forEach(them => {
+        entities.forEach(them => {
             if (entity != them) {
                 if (this.checkColliding(entity, them)) {
                     this.distance = this.calculateDistance(entity, them)
@@ -30,7 +31,8 @@ export var collisionDetection = {
                         entity.velocity.x != 0 ? Math.abs(this.distance.x / entity.velocity.x) : Infinity,
                         entity.velocity.y != 0 ? Math.abs(this.distance.y / entity.velocity.y) : Infinity
                     )
-                    this.collisions.push({ entity: them, collisionTime: this.collisionTime })
+                    this.collisionSide = this.checkCollisionSide(entity.velocity, this.distance)
+                    this.collisions.push({ entity: them, collisionTime: this.collisionTime, collisionSide: this.collisionSide })
                 }
             }
         });
@@ -63,6 +65,23 @@ export var collisionDetection = {
             us.pos.y + us.velocity.y < them.pos.y + them.size.y &&
             us.pos.y + us.velocity.y + us.size.y > them.pos.y
         )
+    },
+
+    checkCollisionSide: function(velocity, distance) {
+        let collisionSide = { bottom: false, left: false, top: false, right: false }
+        if (velocity.y > 0 && distance.y == 0) {
+            collisionSide.bottom = true
+        }
+        if (velocity.x > 0 && distance.x == 0) {
+            collisionSide.left = true
+        }
+        if (velocity.y < 0 && distance.y == 0) {
+            collisionSide.top = true
+        }
+        if (velocity.x < 0 && distance.x == 0) {
+            collisionSide.right = true
+        }
+        return collisionSide
     },
 
     calculateDistance: function(us, them) {

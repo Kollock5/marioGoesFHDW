@@ -17,4 +17,12 @@ export class Vector {
     length() {
         return Math.sqrt((this.x * this.x) + (this.y * this.y))
     }
+
+    clone() {
+        return new Vector(this.x, this.y)
+    }
+
+    toJson() {
+        return `{ "x": ${this.x}, "y": ${this.y} }`
+    }
 }

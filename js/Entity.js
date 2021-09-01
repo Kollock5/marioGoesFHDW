@@ -1,13 +1,22 @@
 import { Vector } from "./util/Vector.js";
 
 export class Entity {
-    constructor(pos, size, properties = []) {
+    constructor(pos, size, imgSrc = "../res/missingTexture.png", properties = [], velocity = new Vector(0, 0), acceleration = new Vector(0, 0), movable = false) {
         this.pos = pos;
-        this.velocity = new Vector(0, 0)
-        this.acceleration = new Vector(0, 0)
         this.size = size;
-        this.movable = false
         this.properties = properties
+        this.velocity = velocity
+        this.acceleration = acceleration
+        this.movable = movable
+        this.animationState = 0
+        this.animationFacingSide = 0
+
+
+        this.collisionSide = { bottom: false, left: false, top: false, right: false }
+
+        this.image = new Image()
+        this.imgSrc = imgSrc
+        this.image.src = imgSrc
     }
 
     addProperties(property, level) {
@@ -39,5 +48,31 @@ export class Entity {
         this.properties.forEach(property => {
             property.onStop(this, level)
         });
+    }
+
+    draw(context, offset = new Vector(0, 0)) {
+        context.drawImage(this.image, this.animationState * this.size.x, this.animationFacingSide * this.size.y, this.size.x, this.size.y, (this.pos.x + offset.x), (this.pos.y + offset.y), this.size.x, this.size.y)
+    }
+
+    clone() {
+        let clonedProperties = []
+        this.properties.forEach(property => {
+            clonedProperties.push(property.clone())
+        });
+        return new Entity(this.pos.clone(), this.size.clone(), this.imgSrc, clonedProperties, this.velocity.clone(), this.acceleration.clone(), this.movable)
+    }
+
+    toJson() {
+        let json = `{ "pos": ${this.pos.toJson()}, "size": ${this.size.toJson()}, "imgSrc": "${this.imgSrc}", "velocity": ${this.velocity.toJson()}, "acceleration": ${this.acceleration.toJson()}, "movable": ${this.movable}, "properties": [ `
+        this.properties.forEach(function(property, i, arr) {
+            json = json + property.toJson()
+            if (i < arr.length - 1) {
+                json = json + `, `
+            } else {
+                json = json + ` `
+            }
+        })
+        json = json + `] }`
+        return json
     }
 }
