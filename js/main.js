@@ -10,7 +10,7 @@ function main() {
     resizeWindow()
     window.addEventListener('resize', resizeWindow);
 
-    let lvlEditor = false
+    let lvlEditor = true
 
     if (lvlEditor) {
         new levelEditor()
