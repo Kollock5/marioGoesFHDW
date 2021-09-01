@@ -4,6 +4,7 @@ import { Vector } from "./util/Vector.js";
 export class Level {
     constructor(name, entities) {
         this.name = name;
+        this.gameWon = false
         this.entities = entities;
         this.keys = keys.init()
         this.tick = 0

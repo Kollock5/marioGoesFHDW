@@ -5,6 +5,7 @@ import { collisionDetection } from "./util/collisionDetection.js";
 import { Entity } from "./Entity.js";
 import { jsonConverter } from "./util/jsonConverter.js";
 import { keys } from "./util/keys.js";
+import { Flag } from "./entities/Flag.js";
 
 const SELECTION_SIZE = 128
 const GRID_SIZE = 32
@@ -12,7 +13,7 @@ const GRID_SIZE = 32
 export class levelEditor {
     constructor() {
         this.mouse = new Vector(0, 0)
-        this.blueprints = [Mario(new Vector(0, 0)), StoneBlock(new Vector(0, 0)), StoneBlock(new Vector(0, 0))]
+        this.blueprints = [Mario(new Vector(0, 0)), StoneBlock(new Vector(0, 0)), Flag(new Vector(0, 0))]
         this.entities = []
         this.activeEntity = null
         this.posY = GRID_SIZE

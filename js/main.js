@@ -1,6 +1,7 @@
 import { Level } from "./Level.js";
 import { levelEditor } from "./levelEditor.js";
 import { dev1 } from "../level/dev1.js"
+import { dev2 } from "../level/dev2.js"
 import { jsonConverter } from "./util/jsonConverter.js";
 
 
@@ -16,7 +17,7 @@ function main() {
     } else {
         new Level(
             'Hello',
-            jsonConverter.fromJson(dev1)
+            jsonConverter.fromJson(dev2)
         ).init()
     }
 }
