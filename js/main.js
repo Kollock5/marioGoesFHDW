@@ -19,7 +19,7 @@ function main() {
     } else {
         new Level(
             'Hello',
-            jsonConverter.fromJson(dev2)
+            jsonConverter.fromJson(dev3)
         ).init()
     }
 }
