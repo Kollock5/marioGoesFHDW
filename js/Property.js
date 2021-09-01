@@ -8,4 +8,8 @@ export class Property {
     onCreate(entity, level) {}
 
     onStop(entity, level) {}
+
+    toJson() {}
+
+    clone() {}
 }

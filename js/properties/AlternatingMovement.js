@@ -42,4 +42,12 @@ export class AlternatingMovement extends Property {
 
     }
 
+    toJson = function() {
+        return '{ "type": "AlternatingMovement" }'
+    }
+
+    clone = function() {
+        return new AlternatingMovement()
+    }
+
 }

@@ -1,26 +1,34 @@
 import { Level } from "./Level.js";
-import { Entity } from "./Entity.js";
-import { MovingBlock } from "./entities/MovingBlock.js";
-import { Gravity } from "./properties/Gravity.js";
-import { Physics } from "./properties/Physics.js";
-import { Vector } from "./util/Vector.js";
-import { Player } from "./properties/Player.js"
+import { levelEditor } from "./levelEditor.js";
+import { dev1 } from "../level/dev1.js"
+import { dev2 } from "../level/dev2.js"
+import { dev3 } from "../level/dev3.js"
+
+import { jsonConverter } from "./util/jsonConverter.js";
+
 
 function main() {
-    var level = new Level(
-        'Hello', [
-            new MovingBlock(new Vector(50, 350), new Vector(455, 25)),
-            new Entity(new Vector(132, 212), new Vector(56, 56), [new Gravity(), new Physics, new Player]),
-            new Entity(new Vector(400, 50), new Vector(56, 56), [new Gravity(), new Physics]),
-            new Entity(new Vector(0, 0), new Vector(10, 1000)),
-            new Entity(new Vector(0, 0), new Vector(1500, 10)),
-            new Entity(new Vector(1270, 0), new Vector(10, 1000)),
-            new Entity(new Vector(0, 750), new Vector(1500, 10)),
+    //use full screen
+    resizeWindow()
+    window.addEventListener('resize', resizeWindow);
 
-            new MovingBlock(new Vector(900, 120), new Vector(25, 400)),
-            new Entity(new Vector(50, 450), new Vector(500, 100)),
+    let lvlEditor = false
 
-        ]).init()
+    if (lvlEditor) {
+        new levelEditor()
+    } else {
+        new Level(
+            'Hello',
+            jsonConverter.fromJson(dev3)
+        ).init()
+    }
+}
+
+function resizeWindow() {
+    var game = document.getElementById("game")
+    var context = game.getContext("2d")
+    context.canvas.width = window.innerWidth;
+    context.canvas.height = window.innerHeight;
 }
 
 main()
