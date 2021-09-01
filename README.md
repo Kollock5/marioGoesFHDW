@@ -11,7 +11,7 @@ https://kollock5.github.io/marioGoesFHDW/
 2. install a local webserver (xampp or python SimpleHTTPServer or other)
  python link -> https://www.python.org/downloads/windows/
 
-3. start the webserver in your directory (with python form console "python -m SimpleHTTPServer 8000")
+3. start the webserver in your directory (with python form console "python -m SimpleHTTPServer 8000" or python -m http.server 8000)
 
 # Github branch rules 
 

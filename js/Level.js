@@ -1,3 +1,4 @@
+import { MovementAnimation } from "./properties/MovementAnimation.js";
 import { keys } from "./util/keys.js";
 import { Vector } from "./util/Vector.js";
 
@@ -8,8 +9,8 @@ export class Level {
         this.keys = keys.init()
         this.tick = 0
         this.score = 0
-        this.health
-        this.time = 300
+        this.health = 3
+        this.time = 120
         this.offset = new Vector(0, 0)
         this.gameSpeed = 1000 / 60
             // this.gravity = new Vector(0.5, 0.4)
@@ -34,9 +35,14 @@ export class Level {
         });
         if (this.tick % 60 == 0)
             this.time--;
-        //if (this.time <= 0 || Player hearts <= 0 )
-        //Player entity flag game LOST -> close level (endscreen)
-        this.buildLvl()
+
+
+        if (this.health > 3)
+            this.health = 3;
+
+        //var player = this.entities.getElementById("Mario");
+
+        this.buildLvl();
     }
     buildLvl() {
         var game = document.getElementById("game")
@@ -65,7 +71,12 @@ export class Level {
         var timeTxt = "Time: " + this.time;
         context.strokeText(scoreTxt, game.width - 150, 20, 120);
         context.strokeText(timeTxt, game.width - 150, 40, 120);
-        //var img = document.getElementById("mario")
-        //context.drawImage(img, 5, 5);
+
+        if (this.time <= 0 || this.health <= 0) {
+            context.fillStyle = "#F0F0FF";
+            context.font = "92px Tahoma";
+            context.fillText("GAME OVER", game.width / 2 - 300, game.height / 2, 600);
+        }
+
     }
 }
