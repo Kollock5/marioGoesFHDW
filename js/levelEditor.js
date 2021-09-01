@@ -13,6 +13,8 @@ import { Slime } from "./entities/Slime.js";
 import { Turtle } from "./entities/Turtle.js";
 import { Canon } from "./entities/Canon.js";
 import { Monkey } from "./entities/Monkey.js";
+import { Coin } from "./entities/Coin.js";
+import { EnergyDrink } from "./entities/EnergyDrink.js";
 
 const SELECTION_SIZE = 128
 const GRID_SIZE = 32
@@ -20,7 +22,7 @@ const GRID_SIZE = 32
 export class levelEditor {
     constructor() {
         this.mouse = new Vector(0, 0)
-        this.blueprints = [Mario(), StoneBlock(), DirtBlock(), GrassBlock(), RockBlock(), Slime(), Turtle(), Monkey(), Canon(), Flag()]
+        this.blueprints = [Mario(), StoneBlock(), DirtBlock(), GrassBlock(), RockBlock(), Slime(), Turtle(), Monkey(), Canon(), Coin(), EnergyDrink(), Flag()]
         this.entities = []
         this.activeEntity = null
         this.posY = GRID_SIZE
