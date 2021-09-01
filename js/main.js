@@ -2,6 +2,8 @@ import { Level } from "./Level.js";
 import { levelEditor } from "./levelEditor.js";
 import { dev1 } from "../level/dev1.js"
 import { dev2 } from "../level/dev2.js"
+import { dev3 } from "../level/dev3.js"
+
 import { jsonConverter } from "./util/jsonConverter.js";
 
 
@@ -10,14 +12,14 @@ function main() {
     resizeWindow()
     window.addEventListener('resize', resizeWindow);
 
-    let lvlEditor = true
+    let lvlEditor = false
 
     if (lvlEditor) {
         new levelEditor()
     } else {
         new Level(
             'Hello',
-            jsonConverter.fromJson(dev2)
+            jsonConverter.fromJson(dev3)
         ).init()
     }
 }
