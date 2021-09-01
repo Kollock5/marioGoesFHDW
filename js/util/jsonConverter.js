@@ -9,6 +9,7 @@ import { Goal } from "../properties/Goal.js";
 import { MovementAnimation } from "../properties/MovementAnimation.js";
 import { SlimeAi } from "../properties/SlimeAi.js";
 import { TurtleAi } from "../properties/TurtleAi.js";
+import { CanonAi } from "../properties/CanonAi.js";
 
 export var jsonConverter = {
     toJson: function(entities) {
@@ -76,6 +77,9 @@ export var jsonConverter = {
                     break;
                 case "TurtleAi":
                     propertyList.push(new TurtleAi)
+                    break;
+                case "CanonAi":
+                    propertyList.push(new CanonAi)
                     break;
                 default:
                     break;
