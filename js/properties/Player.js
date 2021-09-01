@@ -28,8 +28,6 @@ export class Player extends Property {
         if (keys.down == true) {
             entity.acceleration.add(new Vector(0, 0.5))
         }
-        // entity.velocity.add(entity.acceleration)
-        // entity.acceleration.set(0, 0)
     }
 
     toJson = function() {
