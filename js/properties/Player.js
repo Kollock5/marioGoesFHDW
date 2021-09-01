@@ -21,7 +21,9 @@ export class Player extends Property {
             entity.acceleration.add(new Vector(0.5, 0))
         }
         if (keys.up == true) {
-            entity.acceleration.add(new Vector(0, -1.5))
+            if (entity.collisionSide.bottom == true) {
+                entity.acceleration.add(new Vector(0, -10))
+            }
         }
         if (keys.down == true) {
             entity.acceleration.add(new Vector(0, 0.5))
