@@ -10,7 +10,7 @@ export class Level {
         this.tick = 0
         this.score = 0
         this.health = 3
-        this.time = 120
+        this.time = 22
         this.offset = new Vector(0, 0)
         this.gameSpeed = 1000 / 60
             // this.gravity = new Vector(0.5, 0.4)
@@ -36,11 +36,10 @@ export class Level {
         if (this.tick % 60 == 0)
             this.time--;
 
-
         if (this.health > 3)
             this.health = 3;
 
-        //var player = this.entities.getElementById("Mario");
+
 
         this.buildLvl();
     }
@@ -69,14 +68,25 @@ export class Level {
         context.font = "12px Tahoma";
         var scoreTxt = "Score: " + this.score;
         var timeTxt = "Time: " + this.time;
+
+
+        // context.fillText(player.pos, game.width - 450, 20, 120);
+
         context.strokeText(scoreTxt, game.width - 150, 20, 120);
         context.strokeText(timeTxt, game.width - 150, 40, 120);
 
         if (this.time <= 0 || this.health <= 0) {
-            context.fillStyle = "#F0F0FF";
-            context.font = "92px Tahoma";
-            context.fillText("GAME OVER", game.width / 2 - 300, game.height / 2, 600);
-        }
+            if (time < -3) {
+                context.fillStyle = "#FFFFFF";
+                context.fillRect(0, 0, game.width, game.height);
+            } else {
+                context.fillStyle = "#F0F0FF";
+                context.font = "92px Tahoma";
+                context.fillText("GAME OVER", game.width / 2 - 300, game.height / 2, 600);
+            }
 
+
+            return;
+        }
     }
 }
