@@ -7,7 +7,6 @@ export class Gravity extends Property {
 
     onTick = function(entity, level) {
         entity.acceleration.add(level.gravity)
-
     }
 
     toJson = function() {
