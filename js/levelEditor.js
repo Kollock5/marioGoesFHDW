@@ -17,6 +17,7 @@ export class levelEditor {
         this.activeEntity = null
         this.posY = GRID_SIZE
         this.offset = new Vector(0, 0)
+        this.inputText = document.getElementById('lvlJson')
 
         this.blueprints.forEach(item => {
             item.pos.set((SELECTION_SIZE - item.size.x) / 2, this.posY);
@@ -76,10 +77,12 @@ export class levelEditor {
                     }
                 }
             }
-
-            //get level as json
-            // console.log(jsonConverter.toJson(this.entities))
+            this.setInputJson()
         });
+    }
+    setInputJson() {
+
+        this.inputText.value = jsonConverter.toJson(this.entities)
     }
 
     gameTick() {
