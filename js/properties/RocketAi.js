@@ -30,8 +30,14 @@ export class RocketAi extends Property {
     }
 
     onCollision = function onCollision(us, them) {
-        them.acceleration.add(new Vector(us.velocity.x * 8, us.velocity.y * 8))
-        this.hit = true
+        if (this.stateTimer == 0) {
+            if (them.movable) {
+                them.velocity.set(this.rocketDirection.x * 32, this.rocketDirection.y * 32)
+            }
+        } else {
+            them.acceleration.add(new Vector(us.velocity.x * 8, us.velocity.y * 8))
+            this.hit = true
+        }
     }
 
     toJson = function() {

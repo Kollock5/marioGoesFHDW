@@ -10,6 +10,7 @@ import { MovementAnimation } from "../properties/MovementAnimation.js";
 import { SlimeAi } from "../properties/SlimeAi.js";
 import { TurtleAi } from "../properties/TurtleAi.js";
 import { CanonAi } from "../properties/CanonAi.js";
+import { MonkeyAi } from "../properties/MonkeyAi.js";
 
 export var jsonConverter = {
     toJson: function(entities) {
@@ -80,6 +81,9 @@ export var jsonConverter = {
                     break;
                 case "CanonAi":
                     propertyList.push(new CanonAi)
+                    break;
+                case "MonkeyAi":
+                    propertyList.push(new MonkeyAi)
                     break;
                 default:
                     break;
