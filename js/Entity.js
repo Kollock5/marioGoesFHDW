@@ -10,6 +10,8 @@ export class Entity {
         this.movable = movable
         this.animationState = 0
 
+        this.collisionSide = { bottom: false, left: false, top: false, right: false }
+
         this.image = new Image()
         this.imgSrc = imgSrc
         this.image.src = imgSrc

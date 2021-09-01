@@ -12,17 +12,17 @@ export class Physics extends Property {
         entity.velocity.add(entity.acceleration)
         this.applyDrag(entity)
 
-        if (entity.velocity.x < -10) {
-            entity.velocity.x = -10
+        if (entity.velocity.x < -20) {
+            entity.velocity.x = -20
         }
-        if (entity.velocity.x > 10) {
-            entity.velocity.x = 10
+        if (entity.velocity.x > 20) {
+            entity.velocity.x = 20
         }
-        if (entity.velocity.y < -10) {
-            entity.velocity.y = -10
+        if (entity.velocity.y < -20) {
+            entity.velocity.y = -20
         }
-        if (entity.velocity.y > 10) {
-            entity.velocity.y = 10
+        if (entity.velocity.y > 20) {
+            entity.velocity.y = 20
         }
 
         entity.acceleration.set(0, 0)
@@ -45,6 +45,7 @@ export class Physics extends Property {
     }
 
     onStop = function(entity, level) {
+        entity.collisionSide = { bottom: false, left: false, top: false, right: false }
         for (let i = 0; i < 2.; i++) {
             this.collision = collisionDetection.nearestCollision(entity, level.entities);
             if (this.collision != null) {
@@ -53,6 +54,14 @@ export class Physics extends Property {
                 } else {
                     entity.velocity.y = entity.velocity.y * this.collision.collisionTime.y
                 }
+
+                entity.collisionSide = {
+                    bottom: (entity.collisionSide.bottom || this.collision.collisionSide.bottom),
+                    left: (entity.collisionSide.left || this.collision.collisionSide.left),
+                    top: (entity.collisionSide.top || this.collision.collisionSide.top),
+                    right: (entity.collisionSide.right || this.collision.collisionSide.right)
+                }
+
                 entity.onCollision(entity, this.collision.entity)
                 this.collision.entity.onCollision(this.collision.entity, entity)
             } else {
