@@ -6,4 +6,4 @@ import { Player } from "../properties/Player.js"
 import { Camera } from "../properties/Camera.js"
 
 
-export function Mario(pos) { return new Entity(pos, new Vector(32, 64), "../res/missingTexture.png", [new Gravity, new Physics, new Player, new Camera]) }
+export function Mario(pos) { return new Entity(pos, new Vector(32, 64), "../res/player.png", [new Gravity, new Physics, new Player, new Camera]) }

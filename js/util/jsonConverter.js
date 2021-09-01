@@ -6,6 +6,7 @@ import { AlternatingMovement } from "../properties/AlternatingMovement.js";
 import { Vector } from "./Vector.js";
 import { Camera } from "../properties/Camera.js";
 import { Goal } from "../properties/Goal.js";
+import { MovementAnimation } from "../properties/MovementAnimation.js";
 
 export var jsonConverter = {
     toJson: function(entities) {
@@ -64,6 +65,9 @@ export var jsonConverter = {
                     break;
                 case "Goal":
                     propertyList.push(new Goal)
+                    break;
+                case "MovementAnimation":
+                    propertyList.push(new MovementAnimation)
                     break;
                 default:
                     break;
