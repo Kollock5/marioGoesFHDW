@@ -62,8 +62,8 @@ export class Physics extends Property {
                     right: (entity.collisionSide.right || this.collision.collisionSide.right)
                 }
 
-                entity.onCollision(entity, this.collision.entity)
-                this.collision.entity.onCollision(this.collision.entity, entity)
+                entity.onCollision(this.collision.entity)
+                this.collision.entity.onCollision(entity)
             } else {
                 break
             }

@@ -7,6 +7,7 @@ import { Vector } from "./Vector.js";
 import { Camera } from "../properties/Camera.js";
 import { Goal } from "../properties/Goal.js";
 import { MovementAnimation } from "../properties/MovementAnimation.js";
+import { SlimeAi } from "../properties/SlimeAi.js";
 
 export var jsonConverter = {
     toJson: function(entities) {
@@ -68,6 +69,9 @@ export var jsonConverter = {
                     break;
                 case "MovementAnimation":
                     propertyList.push(new MovementAnimation)
+                    break;
+                case "SlimeAi":
+                    propertyList.push(new SlimeAi)
                     break;
                 default:
                     break;
