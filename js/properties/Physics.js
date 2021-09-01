@@ -10,7 +10,6 @@ export class Physics extends Property {
 
     onTick = function(entity, level) {
         entity.velocity.add(entity.acceleration)
-        this.applyDrag(entity)
 
         if (entity.velocity.x < -20) {
             entity.velocity.x = -20
@@ -68,7 +67,10 @@ export class Physics extends Property {
                 break
             }
         }
+        // console.log(entity.velocity)
         entity.pos.add(entity.velocity)
+        this.applyDrag(entity)
+
     }
 
     toJson = function() {
