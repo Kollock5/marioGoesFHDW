@@ -15,6 +15,15 @@ h1 {
     /* height: 100%; */
     /* width: 100%; */
     display: block;
+    z-index: -1;
+}
+
+#lvlJson {
+    background-color: wheat;
+    position: fixed;
+    width: 25%;
+    left: 150px;
+    top: 5px;
 }
 
 .Entity {

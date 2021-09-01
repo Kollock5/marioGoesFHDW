@@ -59,7 +59,6 @@ export class Entity {
     }
 
     toJson() {
-        console.log(this.imgSrc)
         let json = `{ "pos": ${this.pos.toJson()}, "size": ${this.size.toJson()}, "imgSrc": "${this.imgSrc}", "velocity": ${this.velocity.toJson()}, "acceleration": ${this.acceleration.toJson()}, "movable": ${this.movable}, "properties": [ `
         this.properties.forEach(function(property, i, arr) {
             json = json + property.toJson()
