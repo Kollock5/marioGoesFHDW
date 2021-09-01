@@ -9,6 +9,8 @@ export class Entity {
         this.acceleration = acceleration
         this.movable = movable
         this.animationState = 0
+        this.animationFacingSide = 0
+
 
         this.collisionSide = { bottom: false, left: false, top: false, right: false }
 
@@ -49,7 +51,7 @@ export class Entity {
     }
 
     draw(context, offset = new Vector(0, 0)) {
-        context.drawImage(this.image, this.animationState * this.size.x, 0, this.size.x, this.size.y, (this.pos.x + offset.x), (this.pos.y + offset.y), this.size.x, this.size.y)
+        context.drawImage(this.image, this.animationState * this.size.x, this.animationFacingSide * this.size.y, this.size.x, this.size.y, (this.pos.x + offset.x), (this.pos.y + offset.y), this.size.x, this.size.y)
     }
 
     clone() {
