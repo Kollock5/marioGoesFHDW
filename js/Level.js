@@ -65,7 +65,7 @@ export class Level {
         var timeTxt = "Time: " + this.time;
         context.strokeText(scoreTxt, game.width - 150, 20, 120);
         context.strokeText(timeTxt, game.width - 150, 40, 120);
-        var img = document.getElementById("mario")
-        context.drawImage(img, 5, 5);
+        //var img = document.getElementById("mario")
+        //context.drawImage(img, 5, 5);
     }
 }
