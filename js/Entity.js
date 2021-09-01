@@ -5,6 +5,7 @@ export class Entity {
         this.pos = pos;
         this.size = size;
         this.properties = properties
+        this.player = false
         this.velocity = velocity
         this.acceleration = acceleration
         this.movable = movable

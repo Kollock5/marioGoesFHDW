@@ -11,6 +11,7 @@ export class Player extends Property {
 
     onCreate(entity, level) {
         entity.movable = true
+        entity.player = true
     }
 
     onTick = function(entity, level) {

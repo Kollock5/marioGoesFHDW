@@ -11,6 +11,8 @@ import { SlimeAi } from "../properties/SlimeAi.js";
 import { TurtleAi } from "../properties/TurtleAi.js";
 import { CanonAi } from "../properties/CanonAi.js";
 import { MonkeyAi } from "../properties/MonkeyAi.js";
+import { CoinLogic } from "../properties/CoinLogic.js";
+import { EnergyDrinkLogic } from "../properties/EnergyDrinkLogic.js";
 
 export var jsonConverter = {
     toJson: function(entities) {
@@ -84,6 +86,12 @@ export var jsonConverter = {
                     break;
                 case "MonkeyAi":
                     propertyList.push(new MonkeyAi)
+                    break;
+                case "CoinLogic":
+                    propertyList.push(new CoinLogic)
+                    break;
+                case "EnergyDrinkLogic":
+                    propertyList.push(new EnergyDrinkLogic)
                     break;
                 default:
                     break;

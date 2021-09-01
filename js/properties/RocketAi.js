@@ -20,7 +20,6 @@ export class RocketAi extends Property {
         entity.acceleration.add(this.rocketDirection)
 
         if (this.stateTimer > 100 || this.hit) {
-            console.log()
             level.entities.splice(level.entities.indexOf(entity), 1)
         }
     }
