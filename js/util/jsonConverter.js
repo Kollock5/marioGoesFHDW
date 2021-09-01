@@ -5,6 +5,8 @@ import { Player } from "../properties/Player.js";
 import { AlternatingMovement } from "../properties/AlternatingMovement.js";
 import { Vector } from "./Vector.js";
 import { Camera } from "../properties/Camera.js";
+import { Goal } from "../properties/Goal.js";
+
 export var jsonConverter = {
     toJson: function(entities) {
         let json = `{ "entities": [ `
@@ -59,6 +61,9 @@ export var jsonConverter = {
                     break;
                 case "Camera":
                     propertyList.push(new Camera)
+                    break;
+                case "Goal":
+                    propertyList.push(new Goal)
                     break;
                 default:
                     break;
