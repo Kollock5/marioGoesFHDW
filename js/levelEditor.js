@@ -28,6 +28,8 @@ export class levelEditor {
         this.posY = GRID_SIZE
         this.offset = new Vector(0, 0)
         this.inputText = document.getElementById('lvlJson')
+        this.inputText.style.display = "block";
+
 
         this.blueprints.forEach(item => {
             item.pos.set((SELECTION_SIZE - item.size.x) / 2, this.posY);
