@@ -9,22 +9,23 @@ import { Button } from "./util/Button.js";
 import { Vector } from "./util/Vector.js";
 
 var activeLvl = null
-var buttons = [new Button(new Vector(100, 100), //game.width / 2 - 275, game.height / 2),
+
+var buttons = [new Button(new Vector(1920 / 2 - 250, 1080 / 2),
         "World 1-1",
         function() {
             activeLvl = new Level('World 1-1', jsonConverter.fromJson(dev1))
         }),
-    new Button(new Vector(300, 100), //game.width / 2 - 275, game.height / 2),
+    new Button(new Vector(1920 / 2 - 86, 1080 / 2),
         "World 1-2",
         function() {
             activeLvl = new Level('World 1-2', jsonConverter.fromJson(dev2))
         }),
-    new Button(new Vector(500, 100), //game.width / 2 - 275, game.height / 2),
+    new Button(new Vector(1920 / 2 + 86, 1080 / 2),
         "World 1-3",
         function() {
             activeLvl = new Level('World 1-3', jsonConverter.fromJson(dev3))
         }),
-    new Button(new Vector(700, 100), //game.width / 2 - 275, game.height / 2),
+    new Button(new Vector(1920 / 2 + 250, 1080 / 2),
         "Level Editor",
         function() {
             activeLvl = new levelEditor()
@@ -50,7 +51,6 @@ function menuTick() {
         //level selector
 
         //draw ing
-        var game = document.getElementById("game")
         var context = game.getContext("2d")
         var image = new Image()
         image.src = "../res/background2.png"
