@@ -5,12 +5,13 @@ import { dev2 } from "../level/dev2.js"
 import { dev3 } from "../level/dev3.js"
 
 import { jsonConverter } from "./util/jsonConverter.js";
-
+var activeLvl = null
 
 function main() {
     //use full screen
     resizeWindow()
     window.addEventListener('resize', resizeWindow);
+    setInterval(() => menuTick(), 1000 / 60);
 
     let lvlEditor = false
 
@@ -20,7 +21,17 @@ function main() {
         new Level(
             'Hello',
             jsonConverter.fromJson(dev3)
-        ).init()
+        )
+    }
+}
+
+function menuTick() {
+    if (activeLvl == null) {
+
+    } else {
+        if (activeLvl.active == false) {
+            activeLvl = null
+        }
     }
 }
 

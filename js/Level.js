@@ -3,6 +3,7 @@ import { Vector } from "./util/Vector.js";
 
 export class Level {
     constructor(name, entities) {
+        this.active = true
         this.name = name;
         this.entities = entities;
         this.backgroundEntities = []
@@ -15,6 +16,8 @@ export class Level {
         this.gameSpeed = 1000 / 60
             // this.gravity = new Vector(0.5, 0.4)
         this.gravity = new Vector(0, 0.9)
+
+        this.init()
     }
 
     init() {
