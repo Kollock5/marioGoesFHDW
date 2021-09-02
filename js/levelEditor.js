@@ -23,6 +23,15 @@ import { Rock } from "./entities/Rock.js";
 
 const GRID_SIZE = 32
 
+var loadButton = {
+    pos: new Vector(600, 10),
+    size: new Vector(30, 30),
+    onClick: function() {
+        let input = window.prompt("sometext", "defaultText");
+        return jsonConverter.fromJson(input)
+    }
+}
+
 export class levelEditor {
     constructor() {
         this.mouse = new Vector(0, 0)
@@ -73,6 +82,19 @@ export class levelEditor {
         });
 
         document.getElementById("game").addEventListener('click', (event) => {
+
+
+            if (event.clientX > loadButton.pos.x &&
+                event.clientX < loadButton.pos.x + loadButton.size.y &&
+                event.clientY > loadButton.pos.y &&
+                event.clientY < loadButton.pos.y + loadButton.size.x) {
+                try {
+                    this.entities = loadButton.onClick()
+                } catch (error) {
+
+                }
+            }
+
             //if no entity is selected try to find a new one
             if (this.activeEntity == null) {
 
@@ -175,5 +197,8 @@ export class levelEditor {
         this.blueprints.forEach(element => {
             element.draw(context)
         });
+
+        context.fillStyle = "#0000FF";
+        context.fillRect(loadButton.pos.x, loadButton.pos.y, loadButton.size.x, loadButton.size.y)
     }
 }
