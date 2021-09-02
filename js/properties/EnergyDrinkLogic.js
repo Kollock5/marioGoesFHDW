@@ -14,7 +14,6 @@ export class EnergyDrinkLogic extends Property {
         if (this.hit) {
             level.backgroundEntities.splice(level.backgroundEntities.indexOf(entity), 1)
             level.health++
-                this.hit = false
         }
     }
 
