@@ -31,6 +31,11 @@ export class Player extends Property {
             entity.acceleration.add(new Vector(0, 0.5))
         }
 
+        if (entity.pos.y > 2000) {
+            level.time = 0
+            entity.pos.y = -99999
+        }
+
         this.checkForItems(entity, level)
     }
 

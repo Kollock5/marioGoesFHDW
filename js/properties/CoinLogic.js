@@ -13,6 +13,7 @@ export class CoinLogic extends Property {
     onTick = function(entity, level) {
         if (this.hit) {
             level.backgroundEntities.splice(level.backgroundEntities.indexOf(entity), 1)
+            level.score++;
         }
     }
 
