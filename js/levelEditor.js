@@ -53,11 +53,11 @@ export class levelEditor {
             console.log(item)
             this.newPos = this.posY + item.size.y + GRID_SIZE
             if (this.newPos > this.game.height) {
-                this.xOffset = this.maxWidth + 46
+                this.xOffset = this.xOffset + this.maxWidth + 16
                 this.posY = GRID_SIZE
                 this.newPos = this.posY + item.size.y + GRID_SIZE
             }
-            item.pos.set((this.xOffset), this.posY);
+            item.pos.set(this.xOffset, this.posY);
             this.posY = this.newPos
 
             if (item.size.x > this.maxWidth) {
