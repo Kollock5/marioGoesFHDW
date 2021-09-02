@@ -15,32 +15,56 @@ import { Canon } from "./entities/Canon.js";
 import { Monkey } from "./entities/Monkey.js";
 import { Coin } from "./entities/Coin.js";
 import { EnergyDrink } from "./entities/EnergyDrink.js";
+import { Tree } from "./entities/Tree.js";
+import { Bush } from "./entities/Bush.js";
+import { FlowerBlue } from "./entities/FlowerBlue.js";
+import { FlowerRed } from "./entities/FlowerRed.js";
+import { Rock } from "./entities/Rock.js";
 
-const SELECTION_SIZE = 128
 const GRID_SIZE = 32
 
 export class levelEditor {
     constructor() {
         this.mouse = new Vector(0, 0)
-        this.blueprints = [Mario(), StoneBlock(), DirtBlock(), GrassBlock(), RockBlock(), Slime(), Turtle(), Monkey(), Canon(), Coin(), EnergyDrink(), Flag()]
+        this.blueprints = [Mario(), StoneBlock(), DirtBlock(), GrassBlock(), RockBlock(), Slime(), Turtle(), Monkey(), Canon(), Coin(), EnergyDrink(), Flag(), Tree(), Bush(), FlowerBlue(), FlowerRed(), Rock()]
         this.entities = []
         this.activeEntity = null
-        this.posY = GRID_SIZE
         this.offset = new Vector(0, 0)
         this.inputText = document.getElementById('lvlJson')
         this.inputText.style.display = "block";
+        this.game = document.getElementById("game")
+        this.blueprintsSelectionSize = 240
 
+        this.buildBlueprints()
 
-        this.blueprints.forEach(item => {
-            item.pos.set((SELECTION_SIZE - item.size.x) / 2, this.posY);
-            this.posY = this.posY + item.size.y + GRID_SIZE
-        });
 
         this.mouseListeners()
         setInterval(() => this.gameTick(), 1000 / 60);
 
         this.keys = keys
         this.keys.init()
+    }
+
+    buildBlueprints() {
+        this.posY = GRID_SIZE
+        this.xOffset = GRID_SIZE / 2
+        this.maxWidth = 32
+        this.blueprints.forEach(item => {
+            console.log(item)
+            this.newPos = this.posY + item.size.y + GRID_SIZE
+            if (this.newPos > this.game.height) {
+                this.xOffset = this.maxWidth + 46
+                this.posY = GRID_SIZE
+                this.newPos = this.posY + item.size.y + GRID_SIZE
+            }
+            item.pos.set((this.xOffset), this.posY);
+            this.posY = this.newPos
+
+            if (item.size.x > this.maxWidth) {
+                this.maxWidth = item.size.x
+            }
+        });
+        this.blueprintsSelectionSize = this.xOffset + this.maxWidth + 16
     }
 
     mouseListeners() {
@@ -77,7 +101,7 @@ export class levelEditor {
                 }
                 //try placing active entity
                 else {
-                    if (this.mouse.x > SELECTION_SIZE) {
+                    if (this.mouse.x > this.blueprintsSelectionSize) {
                         this.collision = collisionDetection.allCollision(this.activeEntity, this.entities)
                         if (this.collision.length < 1) {
                             if (keys.shift == true) {
@@ -126,9 +150,8 @@ export class levelEditor {
     }
 
     buildLvl() {
-        var game = document.getElementById("game")
-        var context = game.getContext("2d")
-        context.clearRect(0, 0, game.width, game.height);
+        var context = this.game.getContext("2d")
+        context.clearRect(0, 0, this.game.width, this.game.height);
         context.fillStyle = "#FF0000";
 
         this.entities.forEach(element => {
@@ -136,11 +159,11 @@ export class levelEditor {
         });
 
         for (let i = 0; i < 60; i++) {
-            context.fillRect(SELECTION_SIZE + (GRID_SIZE * i), 1, 1, 2000)
+            context.fillRect(this.blueprintsSelectionSize + (GRID_SIZE * i), 1, 1, 2000)
         }
 
         for (let i = 0; i < 35; i++) {
-            context.fillRect(SELECTION_SIZE + 1, (GRID_SIZE * i), 2000, 1)
+            context.fillRect(this.blueprintsSelectionSize + 1, (GRID_SIZE * i), 2000, 1)
         }
 
         if (this.activeEntity != null) {
@@ -148,7 +171,7 @@ export class levelEditor {
         }
 
         context.fillStyle = "#00FF00";
-        context.fillRect(0, 0, SELECTION_SIZE, game.height);
+        context.fillRect(0, 0, this.blueprintsSelectionSize, this.game.height);
         this.blueprints.forEach(element => {
             element.draw(context)
         });
