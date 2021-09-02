@@ -27,7 +27,7 @@ var loadButton = {
     pos: new Vector(600, 10),
     size: new Vector(30, 30),
     onClick: function() {
-        let input = window.prompt("sometext", "defaultText");
+        let input = window.prompt("Load Level from Json", "place Json here");
         return jsonConverter.fromJson(input)
     }
 }
@@ -59,7 +59,6 @@ export class levelEditor {
         this.xOffset = GRID_SIZE / 2
         this.maxWidth = 32
         this.blueprints.forEach(item => {
-            console.log(item)
             this.newPos = this.posY + item.size.y + GRID_SIZE
             if (this.newPos > this.game.height) {
                 this.xOffset = this.xOffset + this.maxWidth + 16

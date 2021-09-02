@@ -67,7 +67,6 @@ export class Physics extends Property {
                 break
             }
         }
-        // console.log(entity.velocity)
         entity.pos.add(entity.velocity)
         this.applyDrag(entity)
 

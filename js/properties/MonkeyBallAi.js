@@ -11,8 +11,6 @@ export class MonkeyBallAi extends Property {
 
     onCreate(entity, level) {
         entity.movable = true
-        console.log(entity.acceleration)
-
     }
 
     onTick = function(entity, level) {
@@ -23,7 +21,6 @@ export class MonkeyBallAi extends Property {
         this.stateTimer = this.stateTimer + 1
 
         if (this.stateTimer > 100 || this.hit) {
-            console.log()
             level.entities.splice(level.entities.indexOf(entity), 1)
         }
     }
