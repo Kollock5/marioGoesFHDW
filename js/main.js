@@ -7,6 +7,7 @@ import { dev3 } from "../level/dev3.js"
 import { jsonConverter } from "./util/jsonConverter.js";
 import { Button } from "./util/Button.js";
 import { Vector } from "./util/Vector.js";
+import { world1 } from "../level/world1.js";
 
 var activeLvl = null
 
@@ -29,6 +30,11 @@ var buttons = [new Button(new Vector(1920 / 2 - 250, 1080 / 2),
         "Level Editor",
         function() {
             activeLvl = new levelEditor()
+        }),
+    new Button(new Vector(1920 / 2 - 250, 1080 / 2 + 60),
+        "World 2-1",
+        function() {
+            activeLvl = new Level('World 2-1', jsonConverter.fromJson(world1))
         }),
 ]
 
