@@ -92,7 +92,7 @@ export class Level {
         context.strokeText(timeTxt, game.width - 150, 40, 120)
 
         var image = new Image()
-        image.src = "../res/energy_drink.png"
+        image.src = "../res/hearth.png"
         switch (this.health) {
             case 1:
                 context.drawImage(image, 80, 10, 40, 40)
