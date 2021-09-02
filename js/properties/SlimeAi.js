@@ -18,19 +18,16 @@ export class SlimeAi extends Property {
         this.animation(entity, level)
         switch (this.state) {
             case 0:
-                entity.acceleration.add(new Vector(-0.25, 0))
+                entity.acceleration.add(new Vector(-0.45, 0))
                 break;
             case 1:
-                // entity.acceleration.add(new Vector(0, 1))
-                entity.acceleration.add(new Vector(0, -1.2))
-
+                entity.acceleration.add(new Vector(0, -1.3))
                 break;
             case 2:
-                entity.acceleration.add(new Vector(0.25, 0))
+                entity.acceleration.add(new Vector(0.45, 0))
                 break;
             case 3:
-                // entity.acceleration.add(new Vector(0, 1))
-                entity.acceleration.add(new Vector(0, -1.2))
+                entity.acceleration.add(new Vector(0, -1.3))
 
                 break;
             default:
