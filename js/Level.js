@@ -1,4 +1,3 @@
-import { MovementAnimation } from "./properties/MovementAnimation.js";
 import { keys } from "./util/keys.js";
 import { Vector } from "./util/Vector.js";
 
@@ -16,12 +15,14 @@ export class Level {
             // this.gravity = new Vector(0.5, 0.4)
         this.gravity = new Vector(0, 0.9)
     }
+
     init() {
         this.entities.forEach(element => {
             element.onCreate(this)
         });
         setInterval(() => this.gameTick(), this.gameSpeed);
     }
+
     gameTick() {
         this.tick++;
         this.entities.forEach(element => {
@@ -43,6 +44,7 @@ export class Level {
 
         this.buildLvl();
     }
+
     buildLvl() {
         var game = document.getElementById("game")
         var context = game.getContext("2d")
@@ -53,6 +55,7 @@ export class Level {
         });
         this.drawOverlay(game, context);
     }
+
     drawOverlay(game, context) {
         //avatar life
         context.fillStyle = "#BEBEBE";
@@ -76,13 +79,14 @@ export class Level {
         context.strokeText(timeTxt, game.width - 150, 40, 120);
 
         if (this.time <= 0 || this.health <= 0) {
-            if (time < -3) {
+            if (this.time < -3) {
                 context.fillStyle = "#FFFFFF";
                 context.fillRect(0, 0, game.width, game.height);
             } else {
                 context.fillStyle = "#F0F0FF";
                 context.font = "92px Tahoma";
-                context.fillText("GAME OVER", game.width / 2 - 300, game.height / 2, 600);
+                context.textAlign = "center";
+                context.fillText("GAME OVER", game.width / 2, game.height / 2);
             }
 
 
