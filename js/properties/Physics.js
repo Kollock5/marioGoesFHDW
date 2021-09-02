@@ -1,7 +1,7 @@
 import { Property } from "../Property.js";
 import { collisionDetection } from "../util/collisionDetection.js";
 
-var DRAG = 0.15
+var DRAG = 0.3
 
 export class Physics extends Property {
     constructor() {
@@ -11,17 +11,17 @@ export class Physics extends Property {
     onTick = function(entity, level) {
         entity.velocity.add(entity.acceleration)
 
-        if (entity.velocity.x < -20) {
-            entity.velocity.x = -20
+        if (entity.velocity.x < -15) {
+            entity.velocity.x = -15
         }
-        if (entity.velocity.x > 20) {
-            entity.velocity.x = 20
+        if (entity.velocity.x > 15) {
+            entity.velocity.x = 15
         }
-        if (entity.velocity.y < -20) {
-            entity.velocity.y = -20
+        if (entity.velocity.y < -15) {
+            entity.velocity.y = -15
         }
-        if (entity.velocity.y > 20) {
-            entity.velocity.y = 20
+        if (entity.velocity.y > 15) {
+            entity.velocity.y = 15
         }
 
         entity.acceleration.set(0, 0)
