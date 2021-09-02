@@ -166,7 +166,7 @@ export class levelEditor {
 
     moveOverMouse() {
         if (this.activeEntity != null) {
-            this.activeEntity.pos.set((Math.floor((this.mouse.x) / GRID_SIZE) * GRID_SIZE + (this.blueprintsSelectionSize % GRID_SIZE)) - this.offset.x, (Math.floor((this.mouse.y) / GRID_SIZE) * GRID_SIZE) - this.offset.y)
+            this.activeEntity.pos.set((Math.floor((this.mouse.x) / GRID_SIZE) * GRID_SIZE) - this.offset.x, (Math.floor((this.mouse.y) / GRID_SIZE) * GRID_SIZE) - this.offset.y)
         }
     }
 
@@ -180,7 +180,7 @@ export class levelEditor {
         });
 
         for (let i = 0; i < 80; i++) {
-            context.fillRect(this.blueprintsSelectionSize + (GRID_SIZE * i), 1, 1, 3000)
+            context.fillRect(this.blueprintsSelectionSize + (GRID_SIZE * i) + (this.blueprintsSelectionSize % GRID_SIZE), 1, 1, 3000)
         }
 
         for (let i = 0; i < 45; i++) {
