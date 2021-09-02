@@ -5,6 +5,7 @@ export var keys = {
     up: false,
     right: false,
     down: false,
+    esc: false,
 
     init: function() {
         document.addEventListener('keydown', function(event) {
@@ -33,6 +34,9 @@ export var keys = {
                 break;
             case "ArrowRight":
                 keys.right = status
+                break;
+            case "Escape":
+                keys.esc = status
                 break;
             default:
                 return; // Quit when this doesn't handle the key event.
