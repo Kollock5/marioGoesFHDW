@@ -16,7 +16,7 @@ export class Level {
         this.gameSpeed = 1000 / 60
             // this.gravity = new Vector(0.5, 0.4)
         this.gravity = new Vector(0, 0.9)
-
+        this.interval = 0
         this.init()
     }
 
@@ -27,7 +27,7 @@ export class Level {
         this.backgroundEntities.forEach(element => {
             this.entities.splice(this.entities.indexOf(element), 1)
         })
-        setInterval(() => this.gameTick(), this.gameSpeed);
+        this.interval = setInterval(() => this.gameTick(), this.gameSpeed);
     }
 
     gameTick() {
@@ -53,9 +53,12 @@ export class Level {
         if (this.health > 3)
             this.health = 3;
 
+        if (this.time < -3) {
+            this.active = false;
+            clearInterval(this.interval)
+        }
 
 
-        this.buildLvl();
         this.backgroundEntities.forEach(element => {
             element.onStop(this)
         });
@@ -92,25 +95,14 @@ export class Level {
         var scoreTxt = "Score: " + this.score;
         var timeTxt = "Time: " + this.time;
 
-
-        // context.fillText(player.pos, game.width - 450, 20, 120);
-
         context.strokeText(scoreTxt, game.width - 150, 20, 120);
         context.strokeText(timeTxt, game.width - 150, 40, 120);
 
         if (this.time <= 0 || this.health <= 0) {
-            if (this.time < -3) {
-                context.fillStyle = "#FFFFFF";
-                context.fillRect(0, 0, game.width, game.height);
-            } else {
-                context.fillStyle = "#F0F0FF";
-                context.font = "92px Tahoma";
-                context.textAlign = "center";
-                context.fillText("GAME OVER", game.width / 2, game.height / 2);
-            }
-
-
-            return;
+            context.fillStyle = "#F0F0FF";
+            context.font = "92px Tahoma";
+            context.textAlign = "center";
+            context.fillText("GAME OVER", game.width / 2, game.height / 2);
         }
     }
 }
