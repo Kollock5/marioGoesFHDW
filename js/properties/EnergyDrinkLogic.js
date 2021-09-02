@@ -13,6 +13,8 @@ export class EnergyDrinkLogic extends Property {
     onTick = function(entity, level) {
         if (this.hit) {
             level.backgroundEntities.splice(level.backgroundEntities.indexOf(entity), 1)
+            level.health++
+                this.hit = false
         }
     }
 

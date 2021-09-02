@@ -10,11 +10,10 @@ export class Level {
         this.keys = keys.init()
         this.tick = 0
         this.score = 0
-        this.health = 3
+        this.health = 2
         this.time = 22
         this.offset = new Vector(0, 0)
         this.gameSpeed = 1000 / 60
-            // this.gravity = new Vector(0.5, 0.4)
         this.gravity = new Vector(0, 0.9)
         this.interval = 0
         this.init()
@@ -58,7 +57,6 @@ export class Level {
             clearInterval(this.interval)
         }
 
-
         this.backgroundEntities.forEach(element => {
             element.onStop(this)
         });
@@ -98,7 +96,27 @@ export class Level {
         context.strokeText(scoreTxt, game.width - 150, 20, 120);
         context.strokeText(timeTxt, game.width - 150, 40, 120);
 
+        var image = new Image()
+        image.src = "../res/energy_drink.png"
+        switch (this.health) {
+            case 1:
+                context.drawImage(image, 80, 10, 40, 40)
+                break
+            case 2:
+                context.drawImage(image, 80, 10, 40, 40)
+                context.drawImage(image, 130, 10, 40, 40)
+                break
+            case 3:
+                context.drawImage(image, 80, 10, 40, 40)
+                context.drawImage(image, 130, 10, 40, 40)
+                context.drawImage(image, 180, 10, 40, 40)
+                break
+        }
+
+
         if (this.time <= 0 || this.health <= 0) {
+            context.fillStyle = "#000000";
+            context.fillRect(0, 0, game.width, game.height)
             context.fillStyle = "#F0F0FF";
             context.font = "92px Tahoma";
             context.textAlign = "center";
