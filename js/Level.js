@@ -5,6 +5,7 @@ export class Level {
     constructor(name, entities) {
         this.name = name;
         this.entities = entities;
+        this.backgroundEntities = []
         this.keys = keys.init()
         this.tick = 0
         this.score = 0
@@ -20,15 +21,25 @@ export class Level {
         this.entities.forEach(element => {
             element.onCreate(this)
         });
+        this.backgroundEntities.forEach(element => {
+            this.entities.splice(this.entities.indexOf(element), 1)
+        })
         setInterval(() => this.gameTick(), this.gameSpeed);
     }
 
     gameTick() {
+        // console.log(this.backgroundEntities)
         this.tick++;
         this.entities.forEach(element => {
             element.onStart(this)
         });
+        this.backgroundEntities.forEach(element => {
+            element.onStart(this)
+        });
         this.entities.forEach(element => {
+            element.onTick(this)
+        });
+        this.backgroundEntities.forEach(element => {
             element.onTick(this)
         });
         this.entities.forEach(element => {
@@ -43,6 +54,10 @@ export class Level {
 
 
         this.buildLvl();
+        this.backgroundEntities.forEach(element => {
+            element.onStop(this)
+        });
+        this.buildLvl()
     }
 
     buildLvl() {
@@ -50,6 +65,9 @@ export class Level {
         var context = game.getContext("2d")
         context.fillStyle = "#FF0000";
         context.clearRect(0, 0, game.width, game.height);
+        this.backgroundEntities.forEach(element => {
+            element.draw(context, this.offset)
+        });
         this.entities.forEach(element => {
             element.draw(context, this.offset)
         });

@@ -13,6 +13,7 @@ import { CanonAi } from "../properties/CanonAi.js";
 import { MonkeyAi } from "../properties/MonkeyAi.js";
 import { CoinLogic } from "../properties/CoinLogic.js";
 import { EnergyDrinkLogic } from "../properties/EnergyDrinkLogic.js";
+import { BackgroundItem } from "../properties/BackgroundItem.js";
 
 export var jsonConverter = {
     toJson: function(entities) {
@@ -92,6 +93,9 @@ export var jsonConverter = {
                     break;
                 case "EnergyDrinkLogic":
                     propertyList.push(new EnergyDrinkLogic)
+                    break;
+                case "BackgroundItem":
+                    propertyList.push(new BackgroundItem(property.value))
                     break;
                 default:
                     break;
