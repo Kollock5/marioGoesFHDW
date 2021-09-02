@@ -22,9 +22,9 @@ h1 {
     background-color: wheat;
     position: fixed;
     width: 25%;
-    left: 150px;
+    left: -6650px;
     top: 5px;
-    display: none;
+    display: block;
 }
 
 .Entity {

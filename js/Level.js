@@ -72,6 +72,9 @@ export class Level {
         var context = game.getContext("2d")
         context.fillStyle = "#FF0000";
         context.clearRect(0, 0, game.width, game.height);
+        var image = new Image()
+        image.src = "../res/background.png"
+        context.drawImage(image, 0, 0, game.width, game.height)
         this.backgroundEntities.forEach(element => {
             element.draw(context, this.offset)
         });

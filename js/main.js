@@ -38,9 +38,11 @@ function main() {
     window.addEventListener('resize', resizeWindow);
 
     document.getElementById("game").addEventListener('click', (event) => {
-        buttons.forEach(button => {
-            button.isHit(new Vector(event.clientX, event.clientY))
-        });
+        if (activeLvl == null) {
+            buttons.forEach(button => {
+                button.isHit(new Vector(event.clientX, event.clientY))
+            });
+        }
     })
     setInterval(() => menuTick(), 1000 / 60);
 
@@ -48,9 +50,7 @@ function main() {
 
 function menuTick() {
     if (activeLvl == null) {
-        //level selector
-
-        //draw ing
+        var game = document.getElementById("game")
         var context = game.getContext("2d")
         var image = new Image()
         image.src = "../res/background2.png"
@@ -58,8 +58,6 @@ function menuTick() {
         buttons.forEach(button => {
             button.draw(context)
         });
-
-
     } else {
         if (activeLvl.active == false) {
             activeLvl = null

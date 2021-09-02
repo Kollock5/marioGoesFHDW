@@ -20,35 +20,47 @@ import { Bush } from "./entities/Bush.js";
 import { FlowerBlue } from "./entities/FlowerBlue.js";
 import { FlowerRed } from "./entities/FlowerRed.js";
 import { Rock } from "./entities/Rock.js";
+import { Button } from "./util/Button.js";
 
 const GRID_SIZE = 32
 
-var loadButton = {
-    pos: new Vector(600, 10),
-    size: new Vector(30, 30),
-    onClick: function() {
-        let input = window.prompt("Load Level from Json", "place Json here");
-        return jsonConverter.fromJson(input)
-    }
-}
-
 export class levelEditor {
     constructor() {
+        this.active = true
         this.mouse = new Vector(0, 0)
         this.blueprints = [Mario(), StoneBlock(), DirtBlock(), GrassBlock(), RockBlock(), Slime(), Turtle(), Monkey(), Canon(), Coin(), EnergyDrink(), Flag(), Tree(), Bush(), FlowerBlue(), FlowerRed(), Rock()]
         this.entities = []
         this.activeEntity = null
         this.offset = new Vector(0, 0)
         this.inputText = document.getElementById('lvlJson')
-        this.inputText.style.display = "block";
         this.game = document.getElementById("game")
         this.blueprintsSelectionSize = 240
+        this.interval
+        this.interval = setInterval(() => this.gameTick(), 1000 / 60);
+
+
+        this.loadButton = new Button(
+            new Vector(250, 5),
+            "Import Json",
+            function() {
+                let input = window.prompt("Load Level from Json", "place Json here");
+                try {
+                    this.entities = jsonConverter.fromJson(input)
+                } catch (error) {}
+            })
+        this.copyButton = new Button(
+            new Vector(400, 5),
+            "Copy to CB",
+            function() {
+                var copyText = document.getElementById("lvlJson")
+                copyText.select()
+                copyText.setSelectionRange(0, 100000000)
+                document.execCommand("copy")
+            })
 
         this.buildBlueprints()
-
-
         this.mouseListeners()
-        setInterval(() => this.gameTick(), 1000 / 60);
+
 
         this.keys = keys
         this.keys.init()
@@ -83,16 +95,8 @@ export class levelEditor {
         document.getElementById("game").addEventListener('click', (event) => {
 
 
-            if (event.clientX > loadButton.pos.x &&
-                event.clientX < loadButton.pos.x + loadButton.size.y &&
-                event.clientY > loadButton.pos.y &&
-                event.clientY < loadButton.pos.y + loadButton.size.x) {
-                try {
-                    this.entities = loadButton.onClick()
-                } catch (error) {
-
-                }
-            }
+            this.loadButton.isHit(new Vector(event.clientX, event.clientY))
+            this.copyButton.isHit(new Vector(event.clientX, event.clientY))
 
             //if no entity is selected try to find a new one
             if (this.activeEntity == null) {
@@ -162,6 +166,10 @@ export class levelEditor {
         if (keys.down == true) {
             this.offset.add(new Vector(0, -32))
         }
+        if (keys.esc == true) {
+            this.active = false
+            clearInterval(this.interval)
+        }
     }
 
     moveOverMouse() {
@@ -196,8 +204,7 @@ export class levelEditor {
         this.blueprints.forEach(element => {
             element.draw(context)
         });
-
-        context.fillStyle = "#0000FF";
-        context.fillRect(loadButton.pos.x, loadButton.pos.y, loadButton.size.x, loadButton.size.y)
+        this.loadButton.draw(context)
+        this.copyButton.draw(context)
     }
 }
