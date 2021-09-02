@@ -11,6 +11,7 @@ export class Player extends Property {
 
     onCreate(entity, level) {
         entity.movable = true
+        entity.player = true
     }
 
     onTick = function(entity, level) {
@@ -28,8 +29,6 @@ export class Player extends Property {
         if (keys.down == true) {
             entity.acceleration.add(new Vector(0, 0.5))
         }
-        // entity.velocity.add(entity.acceleration)
-        // entity.acceleration.set(0, 0)
     }
 
     toJson = function() {

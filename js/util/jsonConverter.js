@@ -7,6 +7,12 @@ import { Vector } from "./Vector.js";
 import { Camera } from "../properties/Camera.js";
 import { Goal } from "../properties/Goal.js";
 import { MovementAnimation } from "../properties/MovementAnimation.js";
+import { SlimeAi } from "../properties/SlimeAi.js";
+import { TurtleAi } from "../properties/TurtleAi.js";
+import { CanonAi } from "../properties/CanonAi.js";
+import { MonkeyAi } from "../properties/MonkeyAi.js";
+import { CoinLogic } from "../properties/CoinLogic.js";
+import { EnergyDrinkLogic } from "../properties/EnergyDrinkLogic.js";
 
 export var jsonConverter = {
     toJson: function(entities) {
@@ -68,6 +74,24 @@ export var jsonConverter = {
                     break;
                 case "MovementAnimation":
                     propertyList.push(new MovementAnimation)
+                    break;
+                case "SlimeAi":
+                    propertyList.push(new SlimeAi)
+                    break;
+                case "TurtleAi":
+                    propertyList.push(new TurtleAi)
+                    break;
+                case "CanonAi":
+                    propertyList.push(new CanonAi)
+                    break;
+                case "MonkeyAi":
+                    propertyList.push(new MonkeyAi)
+                    break;
+                case "CoinLogic":
+                    propertyList.push(new CoinLogic)
+                    break;
+                case "EnergyDrinkLogic":
+                    propertyList.push(new EnergyDrinkLogic)
                     break;
                 default:
                     break;

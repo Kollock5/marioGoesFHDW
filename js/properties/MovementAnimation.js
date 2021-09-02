@@ -17,7 +17,6 @@ export class MovementAnimation extends Property {
             entity.animationState = 3
         } else {
             if (entity.velocity.x != 0) {
-                console.log(Math.floor(level.tick / 1) % 3)
                 entity.animationState = Math.floor(level.tick / 9) % 3
             } else {
                 entity.animationState = 0
