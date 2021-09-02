@@ -18,11 +18,11 @@ export class TurtleAi extends Property {
         this.animation(entity, level)
         switch (this.state) {
             case 0:
-                entity.acceleration.set(-0.201, 0)
+                entity.acceleration.set(-0.33, 0)
                 break;
             case 1:
                 // entity.acceleration.add(new Vector(0, 1))
-                entity.acceleration.set(0.201, 0)
+                entity.acceleration.set(0.33, 0)
 
                 break;
             default:

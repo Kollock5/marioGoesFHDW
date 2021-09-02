@@ -7,7 +7,7 @@ export class MonkeyAi extends Property {
         super()
         this.state = 0
         this.stateTimer = 0
-        this.movement = new Vector(0.21, 0)
+        this.movement = new Vector(0.37, 0)
     }
 
     onTick = function(entity, level) {

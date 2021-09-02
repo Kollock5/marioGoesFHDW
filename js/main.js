@@ -12,14 +12,14 @@ function main() {
     resizeWindow()
     window.addEventListener('resize', resizeWindow);
 
-    let lvlEditor = true
+    let lvlEditor = false
 
     if (lvlEditor) {
         new levelEditor()
     } else {
         new Level(
             'Hello',
-            jsonConverter.fromJson(dev1)
+            jsonConverter.fromJson(dev3)
         ).init()
     }
 }

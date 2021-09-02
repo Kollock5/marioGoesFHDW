@@ -23,6 +23,15 @@ import { Rock } from "./entities/Rock.js";
 
 const GRID_SIZE = 32
 
+var loadButton = {
+    pos: new Vector(600, 10),
+    size: new Vector(30, 30),
+    onClick: function() {
+        let input = window.prompt("Load Level from Json", "place Json here");
+        return jsonConverter.fromJson(input)
+    }
+}
+
 export class levelEditor {
     constructor() {
         this.mouse = new Vector(0, 0)
@@ -50,7 +59,6 @@ export class levelEditor {
         this.xOffset = GRID_SIZE / 2
         this.maxWidth = 32
         this.blueprints.forEach(item => {
-            console.log(item)
             this.newPos = this.posY + item.size.y + GRID_SIZE
             if (this.newPos > this.game.height) {
                 this.xOffset = this.xOffset + this.maxWidth + 16
@@ -73,6 +81,19 @@ export class levelEditor {
         });
 
         document.getElementById("game").addEventListener('click', (event) => {
+
+
+            if (event.clientX > loadButton.pos.x &&
+                event.clientX < loadButton.pos.x + loadButton.size.y &&
+                event.clientY > loadButton.pos.y &&
+                event.clientY < loadButton.pos.y + loadButton.size.x) {
+                try {
+                    this.entities = loadButton.onClick()
+                } catch (error) {
+
+                }
+            }
+
             //if no entity is selected try to find a new one
             if (this.activeEntity == null) {
 
@@ -158,12 +179,12 @@ export class levelEditor {
             element.draw(context, this.offset)
         });
 
-        for (let i = 0; i < 60; i++) {
-            context.fillRect(this.blueprintsSelectionSize + (GRID_SIZE * i), 1, 1, 2000)
+        for (let i = 0; i < 80; i++) {
+            context.fillRect(this.blueprintsSelectionSize + (GRID_SIZE * i) + (this.blueprintsSelectionSize % GRID_SIZE), 1, 1, 3000)
         }
 
-        for (let i = 0; i < 35; i++) {
-            context.fillRect(this.blueprintsSelectionSize + 1, (GRID_SIZE * i), 2000, 1)
+        for (let i = 0; i < 45; i++) {
+            context.fillRect(this.blueprintsSelectionSize + 1, (GRID_SIZE * i), 3000, 1)
         }
 
         if (this.activeEntity != null) {
@@ -175,5 +196,8 @@ export class levelEditor {
         this.blueprints.forEach(element => {
             element.draw(context)
         });
+
+        context.fillStyle = "#0000FF";
+        context.fillRect(loadButton.pos.x, loadButton.pos.y, loadButton.size.x, loadButton.size.y)
     }
 }

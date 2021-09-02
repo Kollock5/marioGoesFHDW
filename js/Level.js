@@ -28,7 +28,6 @@ export class Level {
     }
 
     gameTick() {
-        // console.log(this.backgroundEntities)
         this.tick++;
         this.entities.forEach(element => {
             element.onStart(this)
