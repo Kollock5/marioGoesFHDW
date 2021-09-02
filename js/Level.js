@@ -83,13 +83,13 @@ export class Level {
 
     drawOverlay(game, context) {
         //avatar life
-        context.fillStyle = "#000000";
-        context.font = "12px Tahoma";
-        var scoreTxt = "Score: " + this.score;
-        var timeTxt = "Time: " + this.time;
+        context.fillStyle = "#000000"
+        context.font = "12px Tahoma"
+        var scoreTxt = "Score: " + this.score
+        var timeTxt = "Time: " + this.time
 
-        context.strokeText(scoreTxt, game.width - 150, 20, 120);
-        context.strokeText(timeTxt, game.width - 150, 40, 120);
+        context.strokeText(scoreTxt, game.width - 150, 20, 120)
+        context.strokeText(timeTxt, game.width - 150, 40, 120)
 
         var image = new Image()
         image.src = "../res/energy_drink.png"
@@ -110,7 +110,7 @@ export class Level {
 
         image.src = "../res/player_head.png"
         context.drawImage(image, 6, 6, 48, 48)
-        context.fillStyle = "#FFFFFF";
+        context.fillStyle = "#FFFFFF"
         context.moveTo(5, 5);
         context.lineTo(55, 5);
         context.lineTo(55, 55);
@@ -120,18 +120,18 @@ export class Level {
 
         //gameover
         if (this.time <= 0 || this.health <= 0) {
-            context.fillStyle = "#000000";
+            context.fillStyle = "#000000"
             context.fillRect(0, 0, game.width, game.height)
-            context.fillStyle = "#F0F0FF";
-            context.font = "92px Tahoma";
-            context.textAlign = "center";
+            context.fillStyle = "#F0F0FF"
+            context.font = "92px Tahoma"
+            context.textAlign = "center"
             context.fillText("GAME OVER", game.width / 2, game.height / 2);
         } else if (this.gameWon) {
-            context.fillStyle = "#F0F0FF";
-            context.font = "92px Tahoma";
-            context.textAlign = "center";
+            context.fillStyle = "#F0F0FF"
+            context.font = "92px Tahoma"
+            context.textAlign = "center"
             context.fillText("GAME CLEAR", game.width / 2, game.height / 2);
-            context.font = "60px Tahoma";
+            context.font = "60px Tahoma"
             context.fillText(scoreTxt, game.width / 2, game.height / 2 + 100);
             this.winTicks++
         }
