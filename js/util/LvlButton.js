@@ -14,7 +14,6 @@ export class LvlButton {
     }
 
     draw(context) {
-        console.log(this.image.width)
         context.drawImage(this.image, this.pos.x, this.pos.y, this.size.x, this.size.y)
         context.fillStyle = "#F0F0FF";
         context.font = "17px Tahoma";

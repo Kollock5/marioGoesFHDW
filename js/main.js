@@ -71,6 +71,7 @@ function menuTick() {
         var context = game.getContext("2d")
         var image = new Image()
         image.src = "../res/background2.png"
+        sleep(2000)
         context.drawImage(image, 0, 0, game.width, game.height)
         lvlButtons.forEach(button => {
             button.draw(context)
@@ -87,6 +88,12 @@ function menuTick() {
             resizeWindow()
         }
     }
+}
+
+function sleep(ms) {
+    return new Promise(
+        resolve => setTimeout(resolve, ms)
+    );
 }
 
 function resizeWindow() {
