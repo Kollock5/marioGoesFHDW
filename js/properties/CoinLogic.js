@@ -15,6 +15,7 @@ export class CoinLogic extends Property {
         if (this.hit) {
             this.audio.play()
             level.backgroundEntities.splice(level.backgroundEntities.indexOf(entity), 1)
+            level.score++;
         }
     }
 

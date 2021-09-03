@@ -7,27 +7,34 @@ import { dev3 } from "../level/dev3.js"
 import { jsonConverter } from "./util/jsonConverter.js";
 import { Button } from "./util/Button.js";
 import { Vector } from "./util/Vector.js";
+import { world1 } from "../level/world1.js";
 
 var activeLvl = null
-var buttons = [new Button(new Vector(100, 100), //game.width / 2 - 275, game.height / 2),
+
+var buttons = [new Button(new Vector(1920 / 2 - 250, 1080 / 2),
         "World 1-1",
         function() {
             activeLvl = new Level('World 1-1', jsonConverter.fromJson(dev1))
         }),
-    new Button(new Vector(300, 100), //game.width / 2 - 275, game.height / 2),
+    new Button(new Vector(1920 / 2 - 86, 1080 / 2),
         "World 1-2",
         function() {
             activeLvl = new Level('World 1-2', jsonConverter.fromJson(dev2))
         }),
-    new Button(new Vector(500, 100), //game.width / 2 - 275, game.height / 2),
+    new Button(new Vector(1920 / 2 + 86, 1080 / 2),
         "World 1-3",
         function() {
             activeLvl = new Level('World 1-3', jsonConverter.fromJson(dev3))
         }),
-    new Button(new Vector(700, 100), //game.width / 2 - 275, game.height / 2),
+    new Button(new Vector(1920 / 2 + 250, 1080 / 2),
         "Level Editor",
         function() {
             activeLvl = new levelEditor()
+        }),
+    new Button(new Vector(1920 / 2 - 250, 1080 / 2 + 60),
+        "World 2-1",
+        function() {
+            activeLvl = new Level('World 2-1', jsonConverter.fromJson(world1))
         }),
 ]
 
