@@ -27,7 +27,6 @@ h1 {
     display: block;
 }
 
-.Entity {
-    background-color: red;
-    position: absolute;
+.hidden {
+    visibility: hidden;
 }
