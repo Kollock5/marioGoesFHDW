@@ -22,6 +22,7 @@ import { FlowerRed } from "./entities/FlowerRed.js";
 import { Rock } from "./entities/Rock.js";
 import { Button } from "./util/Button.js";
 import { IconButton } from "./util/IconButton.js";
+import { MoldyBread } from "./entities/ MoldyBread.js";
 
 const GRID_SIZE = 32
 var loadMenuOpen = false
@@ -33,7 +34,7 @@ export class levelEditor {
     constructor() {
         this.active = true
         this.mouse = new Vector(0, 0)
-        this.blueprints = [Mario(), StoneBlock(), DirtBlock(), GrassBlock(), RockBlock(), Slime(), Turtle(), Monkey(), Canon(), Coin(), EnergyDrink(), Flag(), Tree(), Bush(), FlowerBlue(), FlowerRed(), Rock()]
+        this.blueprints = [Mario(), StoneBlock(), DirtBlock(), GrassBlock(), RockBlock(), Slime(), Turtle(), Monkey(), Canon(), Coin(), MoldyBread(), EnergyDrink(), Flag(), Tree(), Bush(), FlowerBlue(), FlowerRed(), Rock()]
         this.activeEntity = null
         this.offset = new Vector(0, 0)
         this.inputText = document.getElementById('lvlJson')
@@ -108,7 +109,6 @@ export class levelEditor {
             new Button(new Vector(0, 0),
                 "Save Custom 1",
                 function() {
-                    console.log('hello world ddd')
                     localStorage.setItem('marioGoesFHDW1', jsonConverter.toJson(lvlEditorEntities));
                     saveMenuOpen = false
                 }),

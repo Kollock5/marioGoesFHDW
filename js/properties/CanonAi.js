@@ -29,8 +29,6 @@ export class CanonAi extends Property {
                     entity.animationState = 1
 
                     this.distance = collisionDetection.calculateDistance(entity, new Entity(new Vector((window.innerWidth / 2) - level.offset.x, (window.innerHeight / 2) - level.offset.y), new Vector(1, 1)))
-                    console.log(this.distance)
-                    console.log(Math.sqrt((this.distance.x * 2) + (this.distance.y * 2)))
                     if (Math.sqrt((this.distance.x * 2) + (this.distance.y * 2)) < 35) {
                         this.audio.play()
                     }
