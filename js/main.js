@@ -43,7 +43,10 @@ var helpButton = new IconButton("./res/help.png",
 var manualWindow = new Help(function() { helpOpen = false })
 
 function main() {
+    console.log('test')
+
     preloadImages(["./res/background.png", "./res/background2.png", "./res/buttonbig.png"]);
+    console.log('dead')
 
 
     //use full screen
@@ -76,6 +79,7 @@ function preloadImages(array) {
     for (var i = 0; i < array.length; i++) {
         var img = new Image();
         img.onload = function() {
+            console.log('loaded')
             var index = list.indexOf(this);
             if (index !== -1) {
                 // remove image from the array once it's loaded
