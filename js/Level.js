@@ -19,6 +19,7 @@ export class Level {
         this.interval = 0
         this.gameWon = false
         this.gameLost = false
+        this.endSoundPlayed = false
         this.delay = 480
 
         this.init()
@@ -32,6 +33,10 @@ export class Level {
             this.entities.splice(this.entities.indexOf(element), 1)
         })
         this.interval = setInterval(() => this.gameTick(), this.gameSpeed);
+
+        this.audio = new Audio('./sfx/theme.wav')
+        this.audio.play()
+        this.audio.loop = true
     }
 
     gameTick() {
@@ -66,7 +71,20 @@ export class Level {
             if (this.delay < 0) {
                 this.active = false
                 clearInterval(this.interval)
+                this.audio.pause()
             }
+        }
+
+        if (this.gameWon && !this.endSoundPlayed) {
+            this.endSoundPlayed = true
+            this.audioWon = new Audio('./sfx/coins.wav')
+            this.audioWon.play()
+        }
+
+        if (this.gameLost && !this.endSoundPlayed) {
+            this.endSoundPlayed = true
+            this.audioLost = new Audio('./sfx/die.wav')
+            this.audioLost.play()
         }
 
         this.backgroundEntities.forEach(element => {
