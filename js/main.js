@@ -11,27 +11,27 @@ import { world1 } from "../level/world1.js";
 
 var activeLvl = null
 
-var buttons = [new Button(new Vector(1920 / 2 - 250, 1080 / 2),
+var buttons = [new Button(new Vector(0, 0),
         "World 1-1",
         function() {
             activeLvl = new Level('World 1-1', jsonConverter.fromJson(dev1))
         }),
-    new Button(new Vector(1920 / 2 - 86, 1080 / 2),
+    new Button(new Vector(0, 0),
         "World 1-2",
         function() {
             activeLvl = new Level('World 1-2', jsonConverter.fromJson(dev2))
         }),
-    new Button(new Vector(1920 / 2 + 86, 1080 / 2),
+    new Button(new Vector(0, 0),
         "World 1-3",
         function() {
             activeLvl = new Level('World 1-3', jsonConverter.fromJson(dev3))
         }),
-    new Button(new Vector(1920 / 2 + 250, 1080 / 2),
+    new Button(new Vector(0, 0),
         "Level Editor",
         function() {
             activeLvl = new levelEditor()
         }),
-    new Button(new Vector(1920 / 2 - 250, 1080 / 2 + 60),
+    new Button(new Vector(0, 0),
         "World 2-1",
         function() {
             activeLvl = new Level('World 2-1', jsonConverter.fromJson(world1))
@@ -76,6 +76,9 @@ function resizeWindow() {
     var context = game.getContext("2d")
     context.canvas.width = window.innerWidth;
     context.canvas.height = window.innerHeight;
+    buttons.forEach((button, i) => {
+        button.pos = new Vector((game.width / 2) - (button.size.x / 2) + (-250 + (i % 4) * 165), game.height / 2 + (Math.floor(i / 4) * 60))
+    })
 }
 
 main()
