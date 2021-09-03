@@ -62,6 +62,8 @@ export class Level {
             this.active = false
             this.gameWon = false
             clearInterval(this.interval)
+            this.audio = new Audio('../sfx/jump.wav')
+            this.audio.play()
         }
 
         this.backgroundEntities.forEach(element => {
