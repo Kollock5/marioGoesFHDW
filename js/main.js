@@ -43,6 +43,9 @@ var helpButton = new IconButton("./res/help.png",
 var manualWindow = new Help(function() { helpOpen = false })
 
 function main() {
+    preloadImages(["./res/background.png", "./res/background2.png", "./res/buttonbig.png"]);
+
+
     //use full screen
     reloadLvlButtons()
     resizeWindow()
@@ -65,13 +68,32 @@ function main() {
 
 }
 
+function preloadImages(array) {
+    if (!preloadImages.list) {
+        preloadImages.list = [];
+    }
+    var list = preloadImages.list;
+    for (var i = 0; i < array.length; i++) {
+        var img = new Image();
+        img.onload = function() {
+            var index = list.indexOf(this);
+            if (index !== -1) {
+                // remove image from the array once it's loaded
+                // for memory consumption reasons
+                list.splice(index, 1);
+            }
+        }
+        list.push(img);
+        img.src = array[i];
+    }
+}
+
 function menuTick() {
     if (activeLvl == null) {
         var game = document.getElementById("game")
         var context = game.getContext("2d")
         var image = new Image()
         image.src = "../res/background2.png"
-        sleep(2000)
         context.drawImage(image, 0, 0, game.width, game.height)
         lvlButtons.forEach(button => {
             button.draw(context)
@@ -88,12 +110,6 @@ function menuTick() {
             resizeWindow()
         }
     }
-}
-
-function sleep(ms) {
-    return new Promise(
-        resolve => setTimeout(resolve, ms)
-    );
 }
 
 function resizeWindow() {
