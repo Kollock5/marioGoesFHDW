@@ -3,10 +3,12 @@ import { keys } from "./util/keys.js";
 import { Vector } from "./util/Vector.js";
 
 export class Level {
-    constructor(name, entities) {
+    constructor(name, entities, highScore, bestTime) {
         this.active = true
         this.name = name;
         this.entities = entities;
+        this.highScore = highScore
+        this.bestTime = bestTime
         this.backgroundEntities = []
         this.keys = keys.init()
         this.tick = 0
@@ -72,6 +74,12 @@ export class Level {
                 this.active = false
                 clearInterval(this.interval)
                 this.audio.pause()
+                if (this.time > this.bestTime) {
+                    localStorage.setItem(`marioGoesFHDW_time_${this.name}`, this.time);
+                }
+                if (this.score > this.highScore) {
+                    localStorage.setItem(`marioGoesFHDW_score_${this.name}`, this.score);
+                }
             }
         }
 

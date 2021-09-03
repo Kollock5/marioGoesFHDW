@@ -110,24 +110,32 @@ export class levelEditor {
                 "Save Custom 1",
                 function() {
                     localStorage.setItem('marioGoesFHDW1', jsonConverter.toJson(lvlEditorEntities));
+                    localStorage.setItem(`marioGoesFHDW_score_Custom 1`, 0)
+                    localStorage.setItem(`marioGoesFHDW_time_Custom 1`, 0)
                     saveMenuOpen = false
                 }),
             new Button(new Vector(0, 0),
                 "Save Custom 2",
                 function() {
                     localStorage.setItem('marioGoesFHDW2', jsonConverter.toJson(lvlEditorEntities));
+                    localStorage.setItem(`marioGoesFHDW_score_Custom 2`, 0)
+                    localStorage.setItem(`marioGoesFHDW_time_Custom 2`, 0)
                     saveMenuOpen = false
                 }),
             new Button(new Vector(0, 0),
                 "Save Custom 3",
                 function() {
-                    localStorage.setItem('marioGoesFHDW3', jsonConverter.toJson(lvlEditorEntities));
+                    localStorage.setItem('marioGoesFHDW3', jsonConverter.toJson(lvlEditorEntities))
+                    localStorage.setItem(`marioGoesFHDW_score_Custom 2`, 0)
+                    localStorage.setItem(`marioGoesFHDW_time_Custom 2`, 0)
                     saveMenuOpen = false
                 }),
             new Button(new Vector(0, 0),
                 "Save Custom 4",
                 function() {
-                    localStorage.setItem('marioGoesFHDW4', jsonConverter.toJson(lvlEditorEntities));
+                    localStorage.setItem('marioGoesFHDW4', jsonConverter.toJson(lvlEditorEntities))
+                    localStorage.setItem(`marioGoesFHDW_score_Custom 2`, 0)
+                    localStorage.setItem(`marioGoesFHDW_time_Custom 2`, 0)
                     saveMenuOpen = false
                 }),
             this.copyButton = new Button(
