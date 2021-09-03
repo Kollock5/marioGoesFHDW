@@ -8,10 +8,52 @@ import { jsonConverter } from "./util/jsonConverter.js";
 import { Button } from "./util/Button.js";
 import { Vector } from "./util/Vector.js";
 import { world1 } from "../level/world1.js";
+import { IconButton } from "./util/IconButton.js";
 
 var activeLvl = null
 
-var buttons = [new Button(new Vector(0, 0),
+var buttons = [
+    new Button(new Vector(0, 0),
+        "Custom 1",
+        function() {
+            let lvl = localStorage.getItem('marioGoesFHDW1')
+            if (lvl != null) {
+                activeLvl = new Level('Custom 1', jsonConverter.fromJson(lvl))
+            } else {
+                activeLvl = new levelEditor()
+            }
+        }),
+    new Button(new Vector(0, 0),
+        "Custom 2",
+        function() {
+            let lvl = localStorage.getItem('marioGoesFHDW2')
+            if (lvl != null) {
+                activeLvl = new Level('Custom 2', jsonConverter.fromJson(lvl))
+            } else {
+                activeLvl = new levelEditor()
+            }
+        }),
+    new Button(new Vector(0, 0),
+        "Custom 3",
+        function() {
+            let lvl = localStorage.getItem('marioGoesFHDW3')
+            if (lvl != null) {
+                activeLvl = new Level('Custom 3', jsonConverter.fromJson(lvl))
+            } else {
+                activeLvl = new levelEditor()
+            }
+        }),
+    new Button(new Vector(0, 0),
+        "Custom 4",
+        function() {
+            let lvl = localStorage.getItem('marioGoesFHDW4')
+            if (lvl != null) {
+                activeLvl = new Level('Custom 4', jsonConverter.fromJson(lvl))
+            } else {
+                activeLvl = new levelEditor()
+            }
+        }),
+    new Button(new Vector(0, 0),
         "World 1-1",
         function() {
             activeLvl = new Level('World 1-1', jsonConverter.fromJson(dev1))
@@ -27,16 +69,16 @@ var buttons = [new Button(new Vector(0, 0),
             activeLvl = new Level('World 1-3', jsonConverter.fromJson(dev3))
         }),
     new Button(new Vector(0, 0),
-        "Level Editor",
-        function() {
-            activeLvl = new levelEditor()
-        }),
-    new Button(new Vector(0, 0),
         "World 2-1",
         function() {
             activeLvl = new Level('World 2-1', jsonConverter.fromJson(world1))
-        }),
+        })
 ]
+
+var lvlEditorButton = new IconButton("./res/button_editor.png",
+    function() {
+        activeLvl = new levelEditor()
+    })
 
 function main() {
     //use full screen
@@ -49,6 +91,7 @@ function main() {
                 button.isHit(new Vector(event.clientX, event.clientY))
             });
         }
+        lvlEditorButton.isHit(new Vector(event.clientX, event.clientY))
     })
     setInterval(() => menuTick(), 1000 / 60);
 
@@ -64,6 +107,7 @@ function menuTick() {
         buttons.forEach(button => {
             button.draw(context)
         });
+        lvlEditorButton.draw(context)
     } else {
         if (activeLvl.active == false) {
             activeLvl = null
@@ -79,6 +123,7 @@ function resizeWindow() {
     buttons.forEach((button, i) => {
         button.pos = new Vector((game.width / 2) - (button.size.x / 2) + (-250 + (i % 4) * 165), game.height / 2 + (Math.floor(i / 4) * 60))
     })
+    lvlEditorButton.pos = new Vector((game.width / 2) + 330, game.height / 2)
 }
 
 main()
