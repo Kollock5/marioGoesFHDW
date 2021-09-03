@@ -11,6 +11,7 @@ import { lvl1_2 } from "../level/lvl1-2.js";
 import { lvl1_4 } from "../level/lvl1-4.js";
 import { lvl1_3 } from "../level/lvl1-3.js";
 import { LvlButton } from "./util/LvlButton.js";
+import { Help } from "./util/Help.js";
 
 var activeLvl = null
 
@@ -34,6 +35,13 @@ var lvlEditorButton = new IconButton("./res/button_editor.png",
         activeLvl = new levelEditor()
     })
 
+var helpOpen = false
+var helpButton = new IconButton("./res/help.png",
+    function() {
+        helpOpen = true
+    })
+var manualWindow = new Help(function() { helpOpen = false })
+
 function main() {
     //use full screen
     reloadLvlButtons()
@@ -42,11 +50,16 @@ function main() {
 
     document.getElementById("game").addEventListener('click', (event) => {
         if (activeLvl == null) {
-            lvlButtons.forEach(button => {
-                button.isHit(new Vector(event.clientX, event.clientY))
-            });
+            if (helpOpen) {
+                manualWindow.isHit(new Vector(event.clientX, event.clientY))
+            } else {
+                lvlButtons.forEach(button => {
+                    button.isHit(new Vector(event.clientX, event.clientY))
+                });
+                lvlEditorButton.isHit(new Vector(event.clientX, event.clientY))
+                helpButton.isHit(new Vector(event.clientX, event.clientY))
+            }
         }
-        lvlEditorButton.isHit(new Vector(event.clientX, event.clientY))
     })
     setInterval(() => menuTick(), 1000 / 60);
 
@@ -63,6 +76,10 @@ function menuTick() {
             button.draw(context)
         });
         lvlEditorButton.draw(context)
+        helpButton.draw(context)
+        if (helpOpen) {
+            manualWindow.draw(context)
+        }
     } else {
         if (activeLvl.active == false) {
             activeLvl = null
@@ -81,6 +98,7 @@ function resizeWindow() {
         button.pos = new Vector((game.width / 2) - (button.size.x / 2) + (-250 + (i % 4) * 165), game.height / 2 + (Math.floor(i / 4) * 80))
     })
     lvlEditorButton.pos = new Vector((game.width / 2) + 330, game.height / 2)
+    helpButton.pos = new Vector((game.width / 2) - 330 - 32, game.height / 2)
 }
 
 

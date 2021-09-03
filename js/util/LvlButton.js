@@ -21,13 +21,13 @@ export class LvlButton {
         context.fillText(this.text, this.pos.x + this.size.x / 2, this.pos.y + this.size.y / 2 - 12);
         context.font = "14px Tahoma";
         context.textAlign = "left";
-        context.fillText("High Score:", this.pos.x + 10, this.pos.y + this.size.y / 2 + 4);
+        context.fillText("High Score:", this.pos.x + 10, this.pos.y + this.size.y / 2 + 6);
         context.textAlign = "right";
-        context.fillText(this.score, this.pos.x + this.size.x - 10, this.pos.y + this.size.y / 2 + 4);
+        context.fillText(this.score, this.pos.x + this.size.x - 10, this.pos.y + this.size.y / 2 + 6);
         context.textAlign = "left";
-        context.fillText("Best Time:", this.pos.x + 10, this.pos.y + this.size.y / 2 + 20);
+        context.fillText("Best Time:", this.pos.x + 10, this.pos.y + this.size.y / 2 + 24);
         context.textAlign = "right";
-        context.fillText(this.time, this.pos.x + this.size.x - 10, this.pos.y + this.size.y / 2 + 20);
+        context.fillText(this.time, this.pos.x + this.size.x - 10, this.pos.y + this.size.y / 2 + 24);
     }
 
     isHit(vecPos) {
