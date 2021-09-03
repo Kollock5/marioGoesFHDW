@@ -4,6 +4,7 @@ export class CoinLogic extends Property {
     constructor() {
         super()
         this.hit = false
+        this.audio = new Audio('../sfx/coins.wav');
     }
 
     onCreate(entity, level) {
@@ -12,6 +13,7 @@ export class CoinLogic extends Property {
 
     onTick = function(entity, level) {
         if (this.hit) {
+            this.audio.play()
             level.backgroundEntities.splice(level.backgroundEntities.indexOf(entity), 1)
             level.score++;
         }
