@@ -10,6 +10,7 @@ export class LvlButton {
         this.score = score
         this.time = time
         this.image = new Image()
+        this.image.width = this.size.x
         this.image.src = imageSource
     }
 
