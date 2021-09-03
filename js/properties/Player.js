@@ -9,6 +9,7 @@ export class Player extends Property {
         this.keys = keys
         this.keys.init()
         this.audio = new Audio('../sfx/jump.wav')
+        this.hitDelay = 0
     }
 
     onCreate(entity, level) {
@@ -17,6 +18,14 @@ export class Player extends Property {
     }
 
     onTick = function(entity, level) {
+        if (entity.isHit && this.hitDelay <= 0) {
+            level.health = level.health - 1
+            this.hitDelay = 60
+        }
+        this.hitDelay = this.hitDelay - 1
+        entity.isHit = false
+
+
         if (keys.left == true) {
             entity.acceleration.add(new Vector(-0.5, 0))
         }

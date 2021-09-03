@@ -74,7 +74,11 @@ export class MonkeyAi extends Property {
         }
     }
 
-    onCollision = function onCollision(us, them) {}
+    onCollision = function onCollision(us, them) {
+        if (them.player) {
+            them.isHit = true
+        }
+    }
 
     toJson = function() {
         return '{ "type": "MonkeyAi" }'
