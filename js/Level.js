@@ -49,7 +49,7 @@ export class Level {
         this.entities.forEach(element => {
             element.onStop(this)
         });
-        if (this.tick % 60 == 0)
+        if (this.tick % 60 == 0 && !this.gameWon)
             this.time--;
 
         if (this.health > 3)
@@ -138,7 +138,9 @@ export class Level {
             context.textAlign = "center"
             context.fillText("GAME CLEAR", game.width / 2, game.height / 2);
             context.font = "60px Tahoma"
+            scoreTxt = "SCORE:" + (this.time + this.score)
             context.fillText(scoreTxt, game.width / 2, game.height / 2 + 100);
+
             this.winTicks++
         }
     }
