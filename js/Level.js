@@ -12,7 +12,7 @@ export class Level {
         this.tick = 0
         this.score = 0
         this.health = 2
-        this.time = 10
+        this.time = 60
         this.offset = new Vector(0, 0)
         this.gameSpeed = 1000 / 60
         this.gravity = new Vector(0, 0.9)
