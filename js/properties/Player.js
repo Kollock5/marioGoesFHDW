@@ -8,6 +8,7 @@ export class Player extends Property {
         super()
         this.keys = keys
         this.keys.init()
+        this.audio = new Audio('../sfx/jump.wav')
     }
 
     onCreate(entity, level) {
@@ -24,6 +25,7 @@ export class Player extends Property {
         }
         if (keys.up == true) {
             if (entity.collisionSide.bottom == true) {
+                this.audio.play()
                 entity.acceleration.add(new Vector(0, -15))
             }
         }

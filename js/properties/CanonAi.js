@@ -2,12 +2,14 @@ import { Rocket } from "../entities/Rocket.js";
 import { Property } from "../Property.js";
 import { Vector } from "../util/Vector.js";
 import { collisionDetection } from "../util/collisionDetection.js";
+import { Entity } from "../Entity.js";
 
 export class CanonAi extends Property {
     constructor() {
         super()
         this.state = 0
         this.stateTimer = 0
+        this.audio = new Audio('../sfx/canon.wav');
     }
 
     onCreate(entity, level) {
@@ -26,6 +28,12 @@ export class CanonAi extends Property {
                     this.state = 1
                     entity.animationState = 1
 
+                    this.distance = collisionDetection.calculateDistance(entity, new Entity(new Vector(-level.offset.x, level.offset.y), new Vector(1, 1)))
+                    console.log(this.distance)
+                    console.log(Math.sqrt((this.distance.x * 2) + (this.distance.y * 2)))
+                    if (Math.sqrt((this.distance.x * 2) + (this.distance.y * 2)) < 100) {
+                        this.audio.play()
+                    }
                     if (entity.animationFacingSide == 0) {
                         level.entities.push(new Rocket(new Vector(entity.pos.x - 32, entity.pos.y), new Vector(-0.5, 0)))
                     } else {

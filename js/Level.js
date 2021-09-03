@@ -56,6 +56,8 @@ export class Level {
         if (this.time < -3) {
             this.active = false;
             clearInterval(this.interval)
+            this.audio = new Audio('../sfx/jump.wav')
+            this.audio.play()
         }
 
 
