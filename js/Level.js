@@ -12,7 +12,7 @@ export class Level {
         this.tick = 0
         this.score = 0
         this.health = 2
-        this.time = 22
+        this.time = 60
         this.offset = new Vector(0, 0)
         this.gameSpeed = 1000 / 60
         this.gravity = new Vector(0, 0.9)
@@ -55,6 +55,9 @@ export class Level {
         if (this.health > 3)
             this.health = 3;
 
+        if (this.health <= 0)
+            this.time = 0
+
         if (this.time < -3 || this.winTicks >= 180) {
             this.active = false
             this.gameWon = false
@@ -86,16 +89,16 @@ export class Level {
 
     drawOverlay(game, context) {
         //avatar life
-        context.fillStyle = "#000000"
-        context.font = "12px Tahoma"
-        var scoreTxt = "Score: " + this.score
-        var timeTxt = "Time: " + this.time
+        context.fillStyle = "#FFFFFF"
+        context.font = "18px Tahoma"
+        var scoreTxt = "SCORE: " + this.score
+        var timeTxt = "TIME: " + this.time
 
-        context.strokeText(scoreTxt, game.width - 150, 20, 120)
-        context.strokeText(timeTxt, game.width - 150, 40, 120)
+        context.fillText(scoreTxt, game.width - 100, 30, 120)
+        context.fillText(timeTxt, game.width - 100, 60, 120)
 
         var image = new Image()
-        image.src = "../res/hearth.png"
+        image.src = "../res/energy_drink.png"
         switch (this.health) {
             case 1:
                 context.drawImage(image, 80, 10, 40, 40)
