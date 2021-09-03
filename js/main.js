@@ -47,6 +47,8 @@ function main() {
 
     preloadImages(["./res/background.png", "./res/background2.png", "./res/buttonbig.png"]);
     console.log('dead')
+    preloadImages(["./res/background.png", "./res/background2.png", "./res/buttonbig.png"]);
+    console.log('dead')
 
 
     //use full screen
