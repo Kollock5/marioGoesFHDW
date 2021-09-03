@@ -12,14 +12,16 @@ export class Level {
         this.tick = 0
         this.score = 0
         this.health = 2
-        this.time = 60
+        this.time = 10
         this.offset = new Vector(0, 0)
         this.gameSpeed = 1000 / 60
         this.gravity = new Vector(0, 0.9)
         this.interval = 0
         this.gameWon = false
+        this.gameLost = false
+        this.delay = 480
+
         this.init()
-        this.winTicks = 0
     }
 
     init() {
@@ -49,19 +51,22 @@ export class Level {
         this.entities.forEach(element => {
             element.onStop(this)
         });
-        if (this.tick % 60 == 0)
+        if (this.tick % 60 == 0 && !(this.gameLost || this.gameWon))
             this.time--;
 
         if (this.health > 3)
             this.health = 3;
 
-        if (this.health <= 0)
-            this.time = 0
+        if (this.health <= 0 || this.time <= 0) {
+            this.gameLost = true
+        }
 
-        if (this.time < -3 || this.winTicks >= 180) {
-            this.active = false
-            this.gameWon = false
-            clearInterval(this.interval)
+        if (this.gameWon || this.gameLost) {
+            this.delay = this.delay - 1
+            if (this.delay < 0) {
+                this.active = false
+                clearInterval(this.interval)
+            }
         }
 
         this.backgroundEntities.forEach(element => {
@@ -125,7 +130,7 @@ export class Level {
         context.stroke();
 
         //gameover
-        if (this.time <= 0 || this.health <= 0) {
+        if (this.gameLost) {
             context.fillStyle = "#000000"
             context.fillRect(0, 0, game.width, game.height)
             context.fillStyle = "#F0F0FF"
@@ -139,7 +144,6 @@ export class Level {
             context.fillText("GAME CLEAR", game.width / 2, game.height / 2);
             context.font = "60px Tahoma"
             context.fillText(scoreTxt, game.width / 2, game.height / 2 + 100);
-            this.winTicks++
         }
     }
 }
