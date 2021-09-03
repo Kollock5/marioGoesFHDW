@@ -34,6 +34,9 @@ export class MonkeyBallAi extends Property {
             them.acceleration.add(new Vector(us.velocity.x * 16, us.velocity.y * 16))
             this.hit = true
         }
+        if (them.player) {
+            them.isHit = true
+        }
     }
 
     toJson = function() {

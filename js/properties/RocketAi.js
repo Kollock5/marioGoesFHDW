@@ -37,6 +37,9 @@ export class RocketAi extends Property {
             them.acceleration.add(new Vector(us.velocity.x * 8, us.velocity.y * 8))
             this.hit = true
         }
+        if (them.player) {
+            them.isHit = true
+        }
     }
 
     toJson = function() {

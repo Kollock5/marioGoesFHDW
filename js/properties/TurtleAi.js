@@ -43,6 +43,9 @@ export class TurtleAi extends Property {
 
     onCollision = function onCollision(us, them) {
         them.acceleration.add(new Vector(us.velocity.x * 8, us.velocity.y * 8))
+        if (them.player) {
+            them.isHit = true
+        }
     }
 
     toJson = function() {

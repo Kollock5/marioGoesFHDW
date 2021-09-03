@@ -6,6 +6,7 @@ export class Entity {
         this.size = size;
         this.properties = properties
         this.player = false
+        this.isHit = false
         this.velocity = velocity
         this.acceleration = acceleration
         this.movable = movable
