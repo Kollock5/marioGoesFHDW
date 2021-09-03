@@ -1,17 +1,15 @@
 import { Level } from "./Level.js";
 import { levelEditor } from "./levelEditor.js";
-
 import { jsonConverter } from "./util/jsonConverter.js";
-import { Button } from "./util/Button.js";
 import { Vector } from "./util/Vector.js";
-import { lvl2_1 } from "../level/lvl2-1.js";
 import { IconButton } from "./util/IconButton.js";
-import { lvl1_1 } from "../level/lvl1-1.js";
-import { lvl1_2 } from "../level/lvl1-2.js";
-import { lvl1_4 } from "../level/lvl1-4.js";
-import { lvl1_3 } from "../level/lvl1-3.js";
 import { LvlButton } from "./util/LvlButton.js";
 import { Help } from "./util/Help.js";
+import { lvl1_1 } from "../level/lvl1-1.js";
+import { lvl1_2 } from "../level/lvl1-2.js";
+import { lvl1_3 } from "../level/lvl1-3.js";
+import { lvl1_4 } from "../level/lvl1-4.js";
+import { lvl2_1 } from "../level/lvl2-1.js";
 
 var activeLvl = null
 
@@ -43,15 +41,6 @@ var helpButton = new IconButton("./res/help.png",
 var manualWindow = new Help(function() { helpOpen = false })
 
 function main() {
-    console.log('test')
-
-    preloadImages(["./res/background.png", "./res/background2.png", "./res/buttonbig.png"]);
-    console.log('dead')
-    preloadImages(["./res/background.png", "./res/background2.png", "./res/buttonbig.png"]);
-    console.log('dead')
-
-
-    //use full screen
     reloadLvlButtons()
     resizeWindow()
     window.addEventListener('resize', resizeWindow);
@@ -71,27 +60,6 @@ function main() {
     })
     setInterval(() => menuTick(), 1000 / 60);
 
-}
-
-function preloadImages(array) {
-    if (!preloadImages.list) {
-        preloadImages.list = [];
-    }
-    var list = preloadImages.list;
-    for (var i = 0; i < array.length; i++) {
-        var img = new Image();
-        img.onload = function() {
-            console.log('loaded')
-            var index = list.indexOf(this);
-            if (index !== -1) {
-                // remove image from the array once it's loaded
-                // for memory consumption reasons
-                list.splice(index, 1);
-            }
-        }
-        list.push(img);
-        img.src = array[i];
-    }
 }
 
 function menuTick() {

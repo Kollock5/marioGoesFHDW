@@ -4,11 +4,7 @@ import { Vector } from "./Vector.js";
 export class Help {
     constructor(onClick) {
         this.size = new Vector(448, 768)
-        console.log(game.width)
-
-        console.log(this.pos)
         this.accept = new Button(new Vector(0, 0), "Thats easy", onClick)
-
         this.image = new Image()
         this.image.src = "../res/manual.png"
     }
