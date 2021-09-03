@@ -179,11 +179,11 @@ export class levelEditor {
         this.blueprintsSelectionSize = this.xOffset + this.maxWidth + 16
 
         this.loadMenu.forEach((button, i) => {
-            button.pos = new Vector((game.width / 2) - (button.size.x / 2), game.height / 2 + (i * 60) - (this.loadMenu.length / 2 * 60))
+            button.pos = new Vector((game.width / 2) - (button.size.x / 2), game.height / 2 + (i * 40) - (this.loadMenu.length / 2 * 60))
         })
 
         this.saveMenu.forEach((button, i) => {
-            button.pos = new Vector((game.width / 2) - (button.size.x / 2), game.height / 2 + (i * 60) - (this.saveMenu.length / 2 * 60))
+            button.pos = new Vector((game.width / 2) - (button.size.x / 2), game.height / 2 + (i * 40) - (this.saveMenu.length / 2 * 60))
         })
 
         this.loadButton.pos = new Vector(game.width - 48, 10)
@@ -205,55 +205,53 @@ export class levelEditor {
                 this.loadMenu.forEach(button => {
                     button.isHit(new Vector(event.clientX, event.clientY))
                 });
-            }
-
-            if (saveMenuOpen == true) {
+            } else if (saveMenuOpen == true) {
                 this.saveMenu.forEach(button => {
                     button.isHit(new Vector(event.clientX, event.clientY))
                 });
-            }
+            } else {
+                //if no entity is selected try to find a new one
+                if (this.activeEntity == null) {
 
-            //if no entity is selected try to find a new one
-            if (this.activeEntity == null) {
+                    //check for click on blueprint
+                    this.collision = collisionDetection.nearestCollision(new Entity(new Vector(event.clientX, event.clientY), new Vector(0, 0)), this.blueprints)
+                    if (this.collision != null) {
+                        this.activeEntity = this.collision.entity.clone()
+                        lvlEditorEntities.push(this.activeEntity)
+                    }
 
-                //check for click on blueprint
-                this.collision = collisionDetection.nearestCollision(new Entity(new Vector(event.clientX, event.clientY), new Vector(0, 0)), this.blueprints)
-                if (this.collision != null) {
-                    this.activeEntity = this.collision.entity.clone()
-                    lvlEditorEntities.push(this.activeEntity)
-                }
+                    //check for click on game element
+                    this.collision = collisionDetection.nearestCollision(new Entity(new Vector(event.clientX - this.offset.x, event.clientY - this.offset.y), new Vector(0, 0)), lvlEditorEntities)
+                    if (this.collision != null) {
+                        this.activeEntity = this.collision.entity
+                        if (keys.alt == true) {
+                            lvlEditorEntities.splice(lvlEditorEntities.indexOf(this.activeEntity), 1)
+                            this.activeEntity = null
+                        }
+                    }
 
-                //check for click on game element
-                this.collision = collisionDetection.nearestCollision(new Entity(new Vector(event.clientX - this.offset.x, event.clientY - this.offset.y), new Vector(0, 0)), lvlEditorEntities)
-                if (this.collision != null) {
-                    this.activeEntity = this.collision.entity
+                } else {
+                    //delete active entity if alt is pressed
                     if (keys.alt == true) {
                         lvlEditorEntities.splice(lvlEditorEntities.indexOf(this.activeEntity), 1)
                         this.activeEntity = null
                     }
-                }
-
-            } else {
-                //delete active entity if ctrl is pressed
-                if (keys.alt == true) {
-                    lvlEditorEntities.splice(lvlEditorEntities.indexOf(this.activeEntity), 1)
-                    this.activeEntity = null
-                }
-                //try placing active entity
-                else {
-                    if (this.mouse.x > this.blueprintsSelectionSize) {
-                        this.collision = collisionDetection.allCollision(this.activeEntity, lvlEditorEntities)
-                        if (this.collision.length < 1) {
-                            if (keys.shift == true) {
-                                lvlEditorEntities.push(this.activeEntity.clone())
-                            } else {
-                                this.activeEntity = null
+                    //try placing active entity
+                    else {
+                        if (this.mouse.x > this.blueprintsSelectionSize) {
+                            this.collision = collisionDetection.allCollision(this.activeEntity, lvlEditorEntities)
+                            if (this.collision.length < 1) {
+                                if (keys.shift == true) {
+                                    lvlEditorEntities.push(this.activeEntity.clone())
+                                } else {
+                                    this.activeEntity = null
+                                }
                             }
                         }
                     }
                 }
+                this.setInputJson()
             }
-            this.setInputJson()
         });
     }
     setInputJson() {

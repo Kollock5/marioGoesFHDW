@@ -1,14 +1,15 @@
 import { Level } from "./Level.js";
 import { levelEditor } from "./levelEditor.js";
-import { dev1 } from "../level/dev1.js"
-import { dev2 } from "../level/dev2.js"
-import { dev3 } from "../level/dev3.js"
 
 import { jsonConverter } from "./util/jsonConverter.js";
 import { Button } from "./util/Button.js";
 import { Vector } from "./util/Vector.js";
-import { world1 } from "../level/world1.js";
+import { lvl2_1 } from "../level/lvl2-1.js";
 import { IconButton } from "./util/IconButton.js";
+import { lvl1_1 } from "../level/lvl1-1.js";
+import { lvl1_2 } from "../level/lvl1-2.js";
+import { lvl1_4 } from "../level/lvl1-4.js";
+import { lvl1_3 } from "../level/lvl1-3.js";
 
 var activeLvl = null
 
@@ -56,22 +57,27 @@ var buttons = [
     new Button(new Vector(0, 0),
         "World 1-1",
         function() {
-            activeLvl = new Level('World 1-1', jsonConverter.fromJson(dev1))
+            activeLvl = new Level('World 1-1', jsonConverter.fromJson(lvl1_1))
         }),
     new Button(new Vector(0, 0),
         "World 1-2",
         function() {
-            activeLvl = new Level('World 1-2', jsonConverter.fromJson(dev2))
+            activeLvl = new Level('World 1-2', jsonConverter.fromJson(lvl1_2))
         }),
     new Button(new Vector(0, 0),
         "World 1-3",
         function() {
-            activeLvl = new Level('World 1-3', jsonConverter.fromJson(dev3))
+            activeLvl = new Level('World 1-3', jsonConverter.fromJson(lvl1_3))
+        }),
+    new Button(new Vector(0, 0),
+        "World 1-4",
+        function() {
+            activeLvl = new Level('World 1-4', jsonConverter.fromJson(lvl1_4))
         }),
     new Button(new Vector(0, 0),
         "World 2-1",
         function() {
-            activeLvl = new Level('World 2-1', jsonConverter.fromJson(world1))
+            activeLvl = new Level('World 2-1', jsonConverter.fromJson(lvl2_1))
         })
 ]
 
