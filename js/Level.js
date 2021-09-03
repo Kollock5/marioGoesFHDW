@@ -55,7 +55,7 @@ export class Level {
         if (this.health > 3)
             this.health = 3;
 
-        if (this.health <= 0)
+        if (this.health <= 0 && this.time > 0)
             this.time = 0
 
         if (this.time < -3 || this.winTicks >= 180) {
