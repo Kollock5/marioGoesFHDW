@@ -8,7 +8,8 @@ export class Player extends Property {
         super()
         this.keys = keys
         this.keys.init()
-        this.audio = new Audio('../sfx/jump.wav')
+        this.audioJump = new Audio('../sfx/jump.wav')
+        this.audioHit = new Audio('../sfx/damage.wav')
         this.hitDelay = 0
     }
 
@@ -19,9 +20,12 @@ export class Player extends Property {
     }
 
     onTick = function(entity, level) {
-        if (entity.isHit && this.hitDelay <= 0) {
-            level.health = level.health - 1
-            this.hitDelay = 60
+        if (entity.isHit) {
+            this.audioHit.play()
+            if (this.hitDelay <= 0) {
+                level.health = level.health - 1
+                this.hitDelay = 60
+            }
         }
         this.hitDelay = this.hitDelay - 1
         entity.isHit = false
@@ -35,7 +39,7 @@ export class Player extends Property {
         }
         if (keys.up == true) {
             if (entity.collisionSide.bottom == true) {
-                this.audio.play()
+                this.audioJump.play()
                 entity.acceleration.add(new Vector(0, -15))
             }
         }

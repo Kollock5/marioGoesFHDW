@@ -37,6 +37,7 @@ export class Level {
         this.interval = setInterval(() => this.gameTick(), this.gameSpeed);
 
         this.audio = new Audio('./sfx/theme.wav')
+        this.audio.volume = 0.3
         this.audio.play()
         this.audio.loop = true
     }
