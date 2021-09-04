@@ -12,7 +12,7 @@ export class Entity {
         this.movable = movable
         this.animationState = 0
         this.animationFacingSide = 0
-
+        this.debugState = false
 
         this.collisionSide = { bottom: false, left: false, top: false, right: false }
 
@@ -54,6 +54,38 @@ export class Entity {
 
     draw(context, offset = new Vector(0, 0)) {
         context.drawImage(this.image, this.animationState * this.size.x, this.animationFacingSide * this.size.y, this.size.x, this.size.y, (this.pos.x + offset.x), (this.pos.y + offset.y), this.size.x, this.size.y)
+    }
+
+    debug(context) {
+        if (this.debug != false) {
+
+        } else {
+            switch (this.debug) {
+                case 1:
+                    context.fillStyle = "#FF0000";
+
+                    break;
+                case 2:
+                    context.fillStyle = "#00FF00";
+
+                    break;
+                case 3:
+                    context.fillStyle = "#0000FF";
+
+                    break;
+
+                default:
+                    break;
+            }
+            context.fillRect(this.pos.x + offset.x, this.pos.y + offset.y, this.size.x, this.size.y)
+            context.fillStyle = "#00FFFF";
+
+            context.beginPath();
+            context.moveTo(this.pos.x + offset.x + this.size.x / 2, this.pos.y + offset.y + this.size.y / 2);
+            context.lineTo(this.pos.x + offset.x + this.size.x / 2 + this.velocity.x, this.pos.y + offset.y + this.size.y / 2 + this.velocity.y)
+            context.stroke();
+            this.debug = false
+        }
     }
 
     clone() {
