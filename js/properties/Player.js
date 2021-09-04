@@ -13,7 +13,6 @@ export class Player extends Property {
     }
 
     onCreate(entity, level) {
-        entity.debugState = 3
         entity.movable = true
         entity.player = true
     }
