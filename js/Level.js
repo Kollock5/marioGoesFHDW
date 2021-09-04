@@ -22,7 +22,7 @@ export class Level {
         this.gameWon = false
         this.gameLost = false
         this.endSoundPlayed = false
-        this.delay = 480
+        this.delay = 200
 
         this.init()
     }
@@ -85,13 +85,17 @@ export class Level {
 
         if (this.gameWon && !this.endSoundPlayed) {
             this.endSoundPlayed = true
-            this.audioWon = new Audio('./sfx/coins.wav')
+            this.audioWon = new Audio('./sfx/win.wav')
+            this.audio.pause()
+
             this.audioWon.play()
         }
 
         if (this.gameLost && !this.endSoundPlayed) {
             this.endSoundPlayed = true
             this.audioLost = new Audio('./sfx/die.wav')
+            this.audio.pause()
+
             this.audioLost.play()
         }
 

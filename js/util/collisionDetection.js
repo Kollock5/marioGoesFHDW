@@ -106,5 +106,4 @@ export var collisionDetection = {
 
         return { vec: this.distance, total: this.totalDistance }
     }
-
 }
