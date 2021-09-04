@@ -10,11 +10,15 @@ export var collisionDetection = {
                 if (this.checkColliding(entity, them)) {
                     this.distance = this.calculateDistance(entity, them)
                     this.collisionTime = new Vector(
-                        entity.velocity.x != 0 ? Math.abs(this.distance.x / entity.velocity.x) : Infinity,
-                        entity.velocity.y != 0 ? Math.abs(this.distance.y / entity.velocity.y) : Infinity
+                        entity.velocity.x != 0 ? Math.abs(this.distance.vec.x / entity.velocity.x) : Infinity,
+                        entity.velocity.y != 0 ? Math.abs(this.distance.vec.y / entity.velocity.y) : Infinity
                     )
-                    this.collisionSide = this.checkCollisionSide(entity.velocity, this.distance)
-                    this.collisions.push({ entity: them, collisionTime: this.collisionTime, collisionSide: this.collisionSide })
+                    this.collisionSide = this.checkCollisionSide(entity.velocity, this.distance.vec)
+                    this.distance.total = this.collisionTime.x != Infinity ? Math.pow(this.collisionTime.x, 2) : 0
+                    this.distance.total = this.distance.total + (this.collisionTime.y != Infinity ? Math.pow(this.collisionTime.y, 2) : 0)
+                    this.distance.total = Math.sqrt(this.distance.total)
+
+                    this.collisions.push({ entity: them, collisionTime: this.collisionTime, collisionSide: this.collisionSide, collisionDistance: this.distance.total })
                 }
             }
         });
@@ -28,11 +32,15 @@ export var collisionDetection = {
                 if (this.checkColliding(entity, them)) {
                     this.distance = this.calculateDistance(entity, them)
                     this.collisionTime = new Vector(
-                        entity.velocity.x != 0 ? Math.abs(this.distance.x / entity.velocity.x) : Infinity,
-                        entity.velocity.y != 0 ? Math.abs(this.distance.y / entity.velocity.y) : Infinity
+                        entity.velocity.x != 0 ? Math.abs(this.distance.vec.x / entity.velocity.x) : Infinity,
+                        entity.velocity.y != 0 ? Math.abs(this.distance.vec.y / entity.velocity.y) : Infinity
                     )
-                    this.collisionSide = this.checkCollisionSide(entity.velocity, this.distance)
-                    this.collisions.push({ entity: them, collisionTime: this.collisionTime, collisionSide: this.collisionSide })
+                    this.collisionSide = this.checkCollisionSide(entity.velocity, this.distance.vec)
+                    this.distance.total = this.collisionTime.x != Infinity ? Math.pow(this.collisionTime.x, 2) : 0
+                    this.distance.total = this.distance.total + (this.collisionTime.y != Infinity ? Math.pow(this.collisionTime.y, 2) : 0)
+                    this.distance.total = Math.sqrt(this.distance.total)
+
+                    this.collisions.push({ entity: them, collisionTime: this.collisionTime, collisionSide: this.collisionSide, collisionDistance: this.distance.total })
                 }
             }
         });
@@ -40,15 +48,9 @@ export var collisionDetection = {
         //finding the closest collision
         if (this.collisions.length > 0) {
             this.closedCollision = this.collisions[0]
-            this.closedCollisionTime = this.closedCollision.collisionTime.x < this.closedCollision.collisionTime.y ? this.closedCollision.collisionTime.x : this.closedCollision.collisionTime.y
             this.collisions.forEach(collision => {
-                if (this.closedCollisionTime > collision.collisionTime.x) {
+                if (this.closedCollision.collisionDistance > collision.collisionDistance) {
                     this.closedCollision = collision
-                    this.closedCollisionTime = collision.collisionTime.x
-                }
-                if (this.closedCollisionTime > collision.collisionTime.y) {
-                    this.closedCollision = collision
-                    this.closedCollisionTime = collision.collisionTime.y
                 }
             });
             return this.closedCollision
@@ -85,21 +87,24 @@ export var collisionDetection = {
     },
 
     calculateDistance: function(us, them) {
-        this.distance = new Vector(0, 0)
+        this.distance = new Vector(Infinity, Infinity)
 
-        if (us.pos.x < them.pos.x) {
+        if (us.pos.x + us.size.x <= them.pos.x) {
             this.distance.x = them.pos.x - (us.pos.x + us.size.x)
-        } else if (us.pos.x > them.pos.x) {
+        } else if (us.pos.x >= them.pos.x + them.size.x) {
             this.distance.x = us.pos.x - (them.pos.x + them.size.x)
         }
 
-        if (us.pos.y < them.pos.y) {
+        if (us.pos.y + us.size.y <= them.pos.y) {
             this.distance.y = them.pos.y - (us.pos.y + us.size.y)
-        } else if (us.pos.y > them.pos.y) {
+        } else if (us.pos.y >= them.pos.y + them.size.y) {
             this.distance.y = us.pos.y - (them.pos.y + them.size.y)
         }
+        this.totalDistance = this.distance.x != Infinity ? Math.pow(this.distance.x, 2) : 0
+        this.totalDistance = this.totalDistance + (this.distance.y != Infinity ? Math.pow(this.distance.y, 2) : 0)
+        this.totalDistance = Math.sqrt(this.totalDistance)
 
-        return this.distance
+        return { vec: this.distance, total: this.totalDistance }
     }
 
 }

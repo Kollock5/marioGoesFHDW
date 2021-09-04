@@ -49,9 +49,11 @@ export class Physics extends Property {
             this.collision = collisionDetection.nearestCollision(entity, level.entities);
             if (this.collision != null) {
                 if (this.collision.collisionTime.x < this.collision.collisionTime.y) {
+                    this.collision.entity.debugState = i + 1
                     entity.velocity.x = entity.velocity.x * this.collision.collisionTime.x
                 } else {
                     entity.velocity.y = entity.velocity.y * this.collision.collisionTime.y
+                    this.collision.entity.debugState = i + 1
                 }
 
                 entity.collisionSide = {
