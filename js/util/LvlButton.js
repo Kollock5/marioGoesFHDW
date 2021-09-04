@@ -34,7 +34,10 @@ export class LvlButton {
         if (vecPos.x > this.pos.x &&
             vecPos.x < this.pos.x + this.size.x &&
             vecPos.y > this.pos.y &&
-            vecPos.y < this.pos.y + this.size.y)
+            vecPos.y < this.pos.y + this.size.y) {
+            this.audio = new Audio('../sfx/menu_select.wav')
+            this.audio.play()
             this.onClick()
+        }
     }
 }
