@@ -127,31 +127,40 @@ export class Level {
         //avatar life
         context.fillStyle = "#FFFFFF"
         context.font = "18px Tahoma"
-        var scoreTxt = "SCORE: " + this.score
-        var timeTxt = "TIME: " + this.time
+        var scoreTxt = "x" + this.score
+        var timeTxt = this.time + "s"
+
+        var image1 = new Image()
+        image1.src = "../res/coin.png"
+        context.drawImage(image1, game.width - 160, 5, 24, 24)
+
+        var image2 = new Image()
+        image2.src = "../res/clock.png"
+        context.drawImage(image2, game.width - 160, 35, 24, 24)
 
         context.fillText(scoreTxt, game.width - 100, 30, 120)
         context.fillText(timeTxt, game.width - 100, 60, 120)
 
-        var image = new Image()
-        image.src = "../res/energy_drink.png"
+        var image3 = new Image()
+        image3.src = "../res/energy_drink.png"
         switch (this.health) {
             case 1:
-                context.drawImage(image, 80, 10, 40, 40)
+                context.drawImage(image3, 80, 10, 40, 40)
                 break
             case 2:
-                context.drawImage(image, 80, 10, 40, 40)
-                context.drawImage(image, 130, 10, 40, 40)
+                context.drawImage(image3, 80, 10, 40, 40)
+                context.drawImage(image3, 130, 10, 40, 40)
                 break
             case 3:
-                context.drawImage(image, 80, 10, 40, 40)
-                context.drawImage(image, 130, 10, 40, 40)
-                context.drawImage(image, 180, 10, 40, 40)
+                context.drawImage(image3, 80, 10, 40, 40)
+                context.drawImage(image3, 130, 10, 40, 40)
+                context.drawImage(image3, 180, 10, 40, 40)
                 break
         }
 
-        image.src = "../res/player_head.png"
-        context.drawImage(image, 6, 6, 48, 48)
+        var image4 = new Image()
+        image4.src = "../res/player_head.png"
+        context.drawImage(image4, 6, 6, 48, 48)
         context.fillStyle = "#FFFFFF"
         context.moveTo(5, 5);
         context.lineTo(55, 5);
@@ -167,14 +176,15 @@ export class Level {
             context.fillStyle = "#F0F0FF"
             context.font = "92px Tahoma"
             context.textAlign = "center"
-            context.fillText("GAME OVER", game.width / 2, game.height / 2);
+            context.fillText("GAME OVER", game.width / 2, game.height / 2)
         } else if (this.gameWon) {
             context.fillStyle = "#F0F0FF"
             context.font = "92px Tahoma"
             context.textAlign = "center"
-            context.fillText("GAME CLEAR", game.width / 2, game.height / 2);
+            context.fillText("GAME CLEAR", game.width / 2, game.height / 2)
             context.font = "60px Tahoma"
-            context.fillText(scoreTxt, game.width / 2, game.height / 2 + 100);
+            scoreTxt = "SCORE: " + this.score
+            context.fillText(scoreTxt, game.width / 2, game.height / 2 + 100)
         }
     }
 }
