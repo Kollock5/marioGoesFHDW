@@ -142,7 +142,7 @@ export class Level {
         context.fillText(timeTxt, game.width - 100, 60, 120)
 
         var image3 = new Image()
-        image3.src = "../res/energy_drink.png"
+        image3.src = "../res/hearth.png"
         switch (this.health) {
             case 1:
                 context.drawImage(image3, 80, 10, 40, 40)
