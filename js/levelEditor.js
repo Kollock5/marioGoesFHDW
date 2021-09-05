@@ -258,12 +258,13 @@ export class levelEditor {
                         }
                     }
                 }
-                this.setInputJson()
             }
+            this.setInputJson()
         });
     }
     setInputJson() {
         this.inputText.value = jsonConverter.toJson(lvlEditorEntities)
+        console.log(this.inputText.value)
     }
 
     gameTick() {
