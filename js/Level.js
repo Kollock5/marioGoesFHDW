@@ -75,12 +75,6 @@ export class Level {
                 this.active = false
                 clearInterval(this.interval)
                 this.audio.pause()
-                if (this.time > this.bestTime) {
-                    localStorage.setItem(`marioGoesFHDW_time_${this.name}`, this.time);
-                }
-                if (this.score > this.highScore) {
-                    localStorage.setItem(`marioGoesFHDW_score_${this.name}`, this.score);
-                }
             }
         }
 
@@ -88,8 +82,14 @@ export class Level {
             this.endSoundPlayed = true
             this.audioWon = new Audio('./sfx/win.wav')
             this.audio.pause()
-
             this.audioWon.play()
+
+            if (this.time > this.bestTime) {
+                localStorage.setItem(`marioGoesFHDW_time_${this.name}`, this.time);
+            }
+            if (this.score > this.highScore) {
+                localStorage.setItem(`marioGoesFHDW_score_${this.name}`, this.score);
+            }
         }
 
         if (this.gameLost && !this.endSoundPlayed) {
