@@ -47,7 +47,7 @@ export class SlimeAi extends Property {
     }
 
     onCollision = function onCollision(us, them) {
-        them.acceleration.add(new Vector(us.velocity.x * 0.4, us.velocity.y * 0.4))
+        them.acceleration.add(new Vector(us.velocity.x * 4, us.velocity.y * 4))
         if (them.player) {
             them.isHit = true
         }

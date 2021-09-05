@@ -31,10 +31,10 @@ export class RocketAi extends Property {
     onCollision = function onCollision(us, them) {
         if (this.stateTimer == 0) {
             if (them.movable) {
-                them.velocity.set(this.rocketDirection.x * 3.2, this.rocketDirection.y * 3.2)
+                them.velocity.set(this.rocketDirection.x * 32, this.rocketDirection.y * 32)
             }
         } else {
-            them.acceleration.add(new Vector(us.velocity.x * 0.8, us.velocity.y * 0.8))
+            them.acceleration.add(new Vector(us.velocity.x * 8, us.velocity.y * 8))
             this.hit = true
         }
         if (them.player) {
