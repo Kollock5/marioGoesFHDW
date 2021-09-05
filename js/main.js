@@ -79,7 +79,23 @@ function menuTick() {
         }
     } else {
         if (activeLvl.active == false) {
-            activeLvl = null
+            if (activeLvl.gameLost) {
+                lvlButtons.forEach((button, i) => {
+                    if (i == activeLvl.id) {
+                        activeLvl = null
+                        button.onClick()
+                    }
+                })
+            } else if (activeLvl.gameWon && activeLvl.id > 3 && activeLvl.id < lvlButtons.length - 1) {
+                lvlButtons.forEach((button, i) => {
+                    if (i == (activeLvl.id + 1) && activeLvl.active == false) {
+                        activeLvl = null
+                        button.onClick()
+                    }
+                })
+            } else {
+                activeLvl = null
+            }
             reloadLvlButtons()
             resizeWindow()
         }
@@ -101,7 +117,7 @@ function resizeWindow() {
 
 function reloadLvlButtons(params) {
     lvlButtons = []
-    customLvl.forEach(lvl => {
+    customLvl.forEach((lvl, i) => {
         let data = localStorage.getItem(lvl.data)
         if (data != null) {
             let score = 0
@@ -118,7 +134,7 @@ function reloadLvlButtons(params) {
                 new LvlButton(new Vector(0, 0),
                     lvl.name,
                     function() {
-                        activeLvl = new Level(lvl.name, jsonConverter.fromJson(data), score, time)
+                        activeLvl = new Level(lvl.name, jsonConverter.fromJson(data), i, score, time)
                     },
                     score,
                     time),
@@ -137,7 +153,9 @@ function reloadLvlButtons(params) {
 
     });
 
-    preMadeLvl.forEach(lvl => {
+
+    let arrayLength = lvlButtons.length
+    preMadeLvl.forEach((lvl, i) => {
         let score = 0
         let time = 0
         let lvlScore = localStorage.getItem(`marioGoesFHDW_score_${lvl.name}`)
@@ -152,7 +170,7 @@ function reloadLvlButtons(params) {
             new LvlButton(new Vector(0, 0),
                 lvl.name,
                 function() {
-                    activeLvl = new Level(lvl.name, jsonConverter.fromJson(lvl.data), score, time)
+                    activeLvl = new Level(lvl.name, jsonConverter.fromJson(lvl.data), i + arrayLength, score, time)
                 },
                 score,
                 time),

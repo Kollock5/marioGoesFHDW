@@ -28,10 +28,10 @@ export class MonkeyBallAi extends Property {
     onCollision = function onCollision(us, them) {
         if (this.stateTimer == 0) {
             if (them.movable) {
-                them.velocity.set(this.ballDirection.x * 32, this.ballDirection.y * 32)
+                them.velocity.set(this.ballDirection.x * 4, this.ballDirection.y * 4)
             }
         } else {
-            them.acceleration.add(new Vector(us.velocity.x * 16, us.velocity.y * 16))
+            them.acceleration.add(new Vector(us.velocity.x * 4, us.velocity.y * 4))
             this.hit = true
         }
         if (them.player) {
