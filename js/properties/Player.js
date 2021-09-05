@@ -45,6 +45,9 @@ export class Player extends Property {
         if (keys.down == true) {
             entity.acceleration.add(new Vector(0, 0.5))
         }
+        if (keys.esc == true) {
+            level.endLevel()
+        }
 
         if (entity.pos.y > 2000) {
             level.time = 0

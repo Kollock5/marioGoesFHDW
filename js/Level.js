@@ -3,9 +3,10 @@ import { keys } from "./util/keys.js";
 import { Vector } from "./util/Vector.js";
 
 export class Level {
-    constructor(name, entities, highScore, bestTime) {
+    constructor(name, entities, id, highScore, bestTime) {
         this.active = true
         this.name = name;
+        this.id = id
         this.entities = entities;
         this.highScore = highScore
         this.bestTime = bestTime
@@ -72,9 +73,7 @@ export class Level {
         if (this.gameWon || this.gameLost) {
             this.delay = this.delay - 1
             if (this.delay < 0) {
-                this.active = false
-                clearInterval(this.interval)
-                this.audio.pause()
+                this.endLevel()
             }
         }
 
@@ -104,6 +103,12 @@ export class Level {
             element.onStop(this)
         });
         this.buildLvl()
+    }
+
+    endLevel() {
+        this.active = false
+        clearInterval(this.interval)
+        this.audio.pause()
     }
 
     buildLvl() {
