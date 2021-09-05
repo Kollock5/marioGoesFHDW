@@ -127,34 +127,33 @@ export class Level {
         //avatar life
         context.fillStyle = "#FFFFFF"
         context.font = "18px Tahoma"
-        var scoreTxt = "x" + this.score
-        var timeTxt = this.time + "s"
+        var scoreTxt = this.score
+        var timeTxt = this.time
 
-        var image1 = new Image()
-        image1.src = "../res/coin.png"
-        context.drawImage(image1, game.width - 160, 5, 24, 24)
+        var coinImg = new Image()
+        coinImg.src = "../res/coin.png"
+        context.drawImage(coinImg, game.width - 35, 10, 24, 24)
+        context.fillText(scoreTxt, game.width - 40, 30, 120)
 
-        var image2 = new Image()
-        image2.src = "../res/clock.png"
-        context.drawImage(image2, game.width - 160, 35, 24, 24)
+        var clockImg = new Image()
+        clockImg.src = "../res/clock.png"
+        context.drawImage(clockImg, game.width - 35, 40, 24, 24)
+        context.fillText(timeTxt, game.width - 40, 60, 120)
 
-        context.fillText(scoreTxt, game.width - 100, 30, 120)
-        context.fillText(timeTxt, game.width - 100, 60, 120)
-
-        var image3 = new Image()
-        image3.src = "../res/hearth.png"
+        var hearthImg = new Image()
+        hearthImg.src = "../res/hearth.png"
         switch (this.health) {
             case 1:
-                context.drawImage(image3, 80, 10, 40, 40)
+                context.drawImage(hearthImg, 80, 10, 40, 40)
                 break
             case 2:
-                context.drawImage(image3, 80, 10, 40, 40)
-                context.drawImage(image3, 130, 10, 40, 40)
+                context.drawImage(hearthImg, 80, 10, 40, 40)
+                context.drawImage(hearthImg, 130, 10, 40, 40)
                 break
             case 3:
-                context.drawImage(image3, 80, 10, 40, 40)
-                context.drawImage(image3, 130, 10, 40, 40)
-                context.drawImage(image3, 180, 10, 40, 40)
+                context.drawImage(hearthImg, 80, 10, 40, 40)
+                context.drawImage(hearthImg, 130, 10, 40, 40)
+                context.drawImage(hearthImg, 180, 10, 40, 40)
                 break
         }
 
