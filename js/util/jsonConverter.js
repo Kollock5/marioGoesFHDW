@@ -15,6 +15,7 @@ import { CoinLogic } from "../properties/CoinLogic.js";
 import { EnergyDrinkLogic } from "../properties/EnergyDrinkLogic.js";
 import { BackgroundItem } from "../properties/BackgroundItem.js";
 import { MoldyBreadLogic } from "../properties/MoldyBreadLogic.js";
+import { BreakingStoneLogic } from "../properties/BreakingStoneLogic.js";
 
 export var jsonConverter = {
     toJson: function(entities) {
@@ -99,7 +100,10 @@ export var jsonConverter = {
                     propertyList.push(new BackgroundItem(property.value))
                     break;
                 case "MoldyBreadLogic":
-                    propertyList.push(new MoldyBreadLogic(property.value))
+                    propertyList.push(new MoldyBreadLogic)
+                    break;
+                case "BreakingStoneLogic":
+                    propertyList.push(new BreakingStoneLogic)
                     break;
                 default:
                     break;
