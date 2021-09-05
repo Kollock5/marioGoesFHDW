@@ -183,7 +183,7 @@ export class Level {
             context.textAlign = "center"
             context.fillText("GAME CLEAR", game.width / 2, game.height / 2)
             context.font = "60px Tahoma"
-            scoreTxt = "SCORE: " + this.score
+            scoreTxt = "SCORE: " + (this.score + this.time + this.health * 50)
             context.fillText(scoreTxt, game.width / 2, game.height / 2 + 100)
         }
     }
