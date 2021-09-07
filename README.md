@@ -1,6 +1,6 @@
 # marioGoesFHDW
 
-Mario ist auf der suche nach seinem Bachelorabschluss und muss verschiedene hindernisse überwinden um diesen zu erreichen.
+Mario ist auf der suche nach seinem Bachelorabschluss und muss verschiedene Hindernisse überwinden um diesen zu erreichen.
 
 https://kollock5.github.io/marioGoesFHDW/
 
