@@ -1,9 +1,12 @@
 import { Property } from "../Property.js";
 
+
 export class EnergyDrinkLogic extends Property {
     constructor() {
         super()
         this.hit = false
+        this.audio = new Audio('../sfx/slurp.mp3');
+
     }
 
     onCreate(entity, level) {
@@ -12,6 +15,7 @@ export class EnergyDrinkLogic extends Property {
 
     onTick = function(entity, level) {
         if (this.hit) {
+            this.audio.play();
             level.backgroundEntities.splice(level.backgroundEntities.indexOf(entity), 1)
             level.health++
         }

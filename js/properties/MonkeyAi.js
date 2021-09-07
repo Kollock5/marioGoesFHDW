@@ -1,6 +1,8 @@
 import { Property } from "../Property.js";
 import { Vector } from "../util/Vector.js";
 import { MonkeyBall } from "../entities/MonkeyBall.js";
+import { collisionDetection } from "../util/collisionDetection.js";
+import { Entity } from "../Entity.js";
 
 export class MonkeyAi extends Property {
     constructor() {
@@ -8,9 +10,13 @@ export class MonkeyAi extends Property {
         this.state = 0
         this.stateTimer = 0
         this.movement = new Vector(0.37, 0)
+        this.audio = new Audio('../sfx/monkey.ogg');
     }
 
     onTick = function(entity, level) {
+
+        this.audio.pause;
+
         this.stateTimer = this.stateTimer + 1
         switch (this.state) {
             case 0:
@@ -39,9 +45,32 @@ export class MonkeyAi extends Property {
 
                     entity.animationState = 3
 
+
                     if (entity.animationFacingSide == 0) {
+
+                        this.distance = collisionDetection.calculateDistance(entity,
+                            new Entity(new Vector((window.innerWidth / 2) - level.offset.x, (window.innerHeight / 2) - level.offset.y),
+                                new Vector(1, 1)))
+
+                        if (this.distance.total < 500) {
+                            this.audio.volume = (500 - this.distance.total) / 500
+                            this.audio.play()
+                        }
+
+
                         level.entities.push(new MonkeyBall(new Vector(entity.pos.x - 32, entity.pos.y), new Vector(-16, -16)))
                     } else {
+
+                        this.distance = collisionDetection.calculateDistance(entity,
+                            new Entity(new Vector((window.innerWidth / 2) - level.offset.x, (window.innerHeight / 2) - level.offset.y),
+                                new Vector(1, 1)))
+
+                        if (this.distance.total < 500) {
+                            this.audio.volume = (500 - this.distance.total) / 500
+                            this.audio.play()
+                        }
+
+
                         level.entities.push(new MonkeyBall(new Vector(entity.pos.x + 32, entity.pos.y), new Vector(16, -16)))
                     }
 
