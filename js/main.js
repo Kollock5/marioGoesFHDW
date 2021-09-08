@@ -14,6 +14,8 @@ import { lvl2_2 } from "../level/lvl2-2.js";
 
 
 var activeLvl = null
+var activeMusic = true
+var activeSound = true
 
 var lvlButtons = []
 var customLvl = [
@@ -34,6 +36,16 @@ var preMadeLvl = [
 var lvlEditorButton = new IconButton("./res/button_editor.png",
     function() {
         activeLvl = new levelEditor()
+    })
+
+var soundButton = new IconButton("./res/sound_on.png",
+    function() {
+        activeSound = !activeSound
+    })
+
+var musicButton = new IconButton("./res/music_on.png",
+    function() {
+        activeMusic = !activeMusic
     })
 
 var helpOpen = false
@@ -58,6 +70,8 @@ function main() {
                 });
                 lvlEditorButton.isHit(new Vector(event.clientX, event.clientY))
                 helpButton.isHit(new Vector(event.clientX, event.clientY))
+                soundButton.isHit(new Vector(event.clientX, event.clientY))
+                musicButton.isHit(new Vector(event.clientX, event.clientY))
             }
         }
     })
@@ -77,6 +91,8 @@ function menuTick() {
         });
         lvlEditorButton.draw(context)
         helpButton.draw(context)
+        soundButton.draw(context)
+        musicButton.draw(context)
         if (helpOpen) {
             manualWindow.draw(context)
         }
@@ -114,7 +130,9 @@ function resizeWindow() {
         button.pos = new Vector((game.width / 2) - (button.size.x / 2) + (-250 + (i % 4) * 165), game.height / 2 + (Math.floor(i / 4) * 80))
     })
     lvlEditorButton.pos = new Vector((game.width / 2) + 330, game.height / 2)
+    musicButton.pos = new Vector((game.width / 2) + 330, game.height / 2 + 50)
     helpButton.pos = new Vector((game.width / 2) - 330 - 32, game.height / 2)
+    soundButton.pos = new Vector((game.width / 2) - 330 - 32, game.height / 2 + 50)
 }
 
 
