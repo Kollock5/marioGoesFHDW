@@ -1,5 +1,7 @@
 import { Property } from "../Property.js";
 import { Vector } from "../util/Vector.js";
+import { collisionDetection } from "../util/collisionDetection.js";
+import { Entity } from "../Entity.js";
 
 export class TurtleAi extends Property {
     constructor() {
@@ -7,6 +9,7 @@ export class TurtleAi extends Property {
         this.won = false
         this.state = 0
         this.stateTimer = 0
+        this.audio = new Audio('../sfx/burp_schildkroete.wav')
     }
 
     onCreate(entity, level) {
@@ -19,6 +22,17 @@ export class TurtleAi extends Property {
         switch (this.state) {
             case 0:
                 entity.acceleration.set(-0.33, 0)
+
+
+                this.distance = collisionDetection.calculateDistance(entity,
+                    new Entity(new Vector((window.innerWidth / 2) - level.offset.x, (window.innerHeight / 2) - level.offset.y),
+                        new Vector(1, 1)))
+
+                if (this.distance.total < 500) {
+                    this.audio.volume = (500 - this.distance.total) / 500
+                    this.audio.play()
+                }
+
                 break;
             case 1:
                 // entity.acceleration.add(new Vector(0, 1))
