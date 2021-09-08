@@ -3,9 +3,9 @@
  ## Projektname
  MarioGoesFHDW
  ## Autoren
- Max Klein
- Lorin Smith
- Felix Relovski
+ Max Klein,
+ Lorin Smith,
+ Felix Relovski,
  Kacper Rogala
  ## Veröffentlichungsdatum
  08.09.2021
@@ -58,13 +58,13 @@ Mario ist auf der Suche nach seinem Bachelorabschluss und muss verschiedene Hind
 Sammle Coins, EnergyDrinks, Brot und erreiche das Ziel (Flagge)
  # Github Teilleistung
  ## Requirements Engineering
- ### Mandatory 
+ ### Mandatory Requirements
  ### Functional Requirements
  ### Non-Functional Requirements
  ### Nice-to-have Requirements
- Max Klein
- Lorin Smith
- Felix Relovski
+ Max Klein,
+ Lorin Smith,
+ Felix Relovski,
  Kacper Rogala
  ## Design and Development Menu
  ### Menu Design
