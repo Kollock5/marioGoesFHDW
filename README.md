@@ -53,4 +53,51 @@ https://kollock5.github.io/marioGoesFHDW/
  7. Die Neuste Version des Projekts kann man sich von der main holen
  git checkout main
  git pull
+ # INFOS
+
+ # Github Teilleistung
+ ## Requirements Engineering
+ ### Mandatory 
+ ### Functional Requirements
+ ### Non-Functional Requirements
+ ### Nice-to-have Requirements
+ Max Klein
+ Lorin Smith
+ Felix Relovski
+ Kacper Rogala
  
+ ## Design and Development Menu
+ ### Menu Design
+ Max Klein, Lorin Smith, Felix Relovski, Kacper Rogala
+ ### Menu Options
+ Max Klein, Felix Relovski
+ ### Menu Sounds
+ Lorin Smith
+ ### Menu Development
+ Max Klein, Lorin Smith, Felix Relovski, Kacper Rogala
+ 
+ ## Design and Development Game
+ ### Game Design
+ Max Klein, Lorin Smith, Felix Relovski, Kacper Rogala
+ ### Level Editor
+ Max Klein, Felix Relovski
+ ### Sounds
+ Lorin Smith
+ ### Sprites
+ Kacper Rogala
+ ### Engine (Development)
+ Max Klein, Lorin Smith, Felix Relovski, Kacper Rogala
+ 
+ ## Testing, Correction and Submission
+ ### Functionality Testing
+ Max Klein, Lorin Smith, Felix Relovski, Kacper Rogala
+ ### Final Correction
+ Max Klein, Lorin Smith, Felix Relovski, Kacper Rogala
+ ### Final Testing
+ Max Klein, Lorin Smith, Felix Relovski, Kacper Rogala
+ ### Preperation PSP & Pitch Slide
+ Lorin Smith, Kacper Rogala
+ ### Licensing and Rights
+ Max Klein, Felix Relovski
+ ### ReadMe
+ Lorin Smith, Kacper Rogala
