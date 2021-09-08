@@ -53,11 +53,21 @@ var lvlEditorButton = new IconButton("./res/button_editor.png",
 var soundButton = new IconButton("./res/sound_on.png",
     function() {
         activeSound = !activeSound
+        if (activeSound) {
+            soundButton.image.src = "./res/sound_on.png"
+        } else {
+            soundButton.image.src = "./res/sound_off.png"
+        }
     })
 
 var musicButton = new IconButton("./res/music_on.png",
     function() {
         activeMusic = !activeMusic
+        if (activeMusic) {
+            musicButton.image.src = "./res/music_on.png"
+        } else {
+            musicButton.image.src = "./res/music_off.png"
+        }
     })
 
 var helpOpen = false
