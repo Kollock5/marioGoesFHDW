@@ -64,6 +64,14 @@ export class Level {
         this.entities.forEach(element => {
             element.onStop(this)
         });
+        this.backgroundEntities.forEach(element => {
+            element.onStop(this)
+        });
+        this.checkGameStates()
+        this.buildLvl()
+    }
+
+    checkGameStates() {
         if (this.tick % 60 == 0 && !(this.gameLost || this.gameWon))
             this.time--;
 
@@ -102,11 +110,6 @@ export class Level {
 
             this.audioLost.play()
         }
-
-        this.backgroundEntities.forEach(element => {
-            element.onStop(this)
-        });
-        this.buildLvl()
     }
 
     endLevel() {
@@ -129,7 +132,9 @@ export class Level {
         this.entities.forEach(element => {
             element.draw(context, this.offset)
         });
-        this.drawOverlay(game, context);
+
+        this.drawOverlay(game, context)
+        this.gameEnded(game, context)
     }
 
     drawOverlay(game, context) {
@@ -176,8 +181,9 @@ export class Level {
         context.lineTo(5, 55);
         context.lineTo(5, 5);
         context.stroke();
+    }
 
-        //gameover
+    gameEnded(game, context) {
         if (this.gameLost) {
             context.fillStyle = "#000000"
             context.fillRect(0, 0, game.width, game.height)

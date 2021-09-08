@@ -98,48 +98,58 @@ function main() {
         }
     })
     setInterval(() => menuTick(), 1000 / 60);
-
 }
 
 function menuTick() {
     if (activeLvl == null) {
-        var game = document.getElementById("game")
-        var context = game.getContext("2d")
-        var image = new Image()
-        image.src = "../res/background2.png"
-        context.drawImage(image, 0, 0, game.width, game.height)
-        lvlButtons.forEach(button => {
-            button.draw(context)
-        });
-        lvlEditorButton.draw(context)
-        helpButton.draw(context)
-        soundButton.draw(context)
-        musicButton.draw(context)
-        if (helpOpen) {
-            manualWindow.draw(context)
-        }
+        draw()
     } else {
-        if (activeLvl.active == false) {
-            if (activeLvl.gameLost) {
-                lvlButtons.forEach((button, i) => {
+        gameActive()
+    }
+}
+
+function gameActive() {
+    if (activeLvl.active == false) {
+        // if lost restart
+        if (activeLvl.gameLost) {
+            lvlButtons.forEach((button, i) => {
                     if (i == activeLvl.id) {
                         activeLvl = null
                         button.onClick()
                     }
                 })
-            } else if (activeLvl.gameWon && activeLvl.id > 3 && activeLvl.id < lvlButtons.length - 1) {
-                lvlButtons.forEach((button, i) => {
+                // if won go to next lvl
+        } else if (activeLvl.gameWon && activeLvl.id > 3 && activeLvl.id < lvlButtons.length - 1) {
+            lvlButtons.forEach((button, i) => {
                     if (i == (activeLvl.id + 1) && activeLvl.active == false) {
                         activeLvl = null
                         button.onClick()
                     }
                 })
-            } else {
-                activeLvl = null
-            }
-            reloadLvlButtons()
-            resizeWindow()
+                // go back to menu
+        } else {
+            activeLvl = null
         }
+        reloadLvlButtons()
+        resizeWindow()
+    }
+}
+
+function draw() {
+    var game = document.getElementById("game")
+    var context = game.getContext("2d")
+    var image = new Image()
+    image.src = "../res/background2.png"
+    context.drawImage(image, 0, 0, game.width, game.height)
+    lvlButtons.forEach(button => {
+        button.draw(context)
+    });
+    lvlEditorButton.draw(context)
+    helpButton.draw(context)
+    soundButton.draw(context)
+    musicButton.draw(context)
+    if (helpOpen) {
+        manualWindow.draw(context)
     }
 }
 
@@ -160,6 +170,8 @@ function resizeWindow() {
 
 function reloadLvlButtons(params) {
     lvlButtons = []
+
+    //build and place Custom lvl Buttons
     customLvl.forEach((lvl, i) => {
         let data = localStorage.getItem(lvl.data)
         if (data != null) {
@@ -196,7 +208,7 @@ function reloadLvlButtons(params) {
 
     });
 
-
+    //build and place Pre build lvl Buttons
     let arrayLength = lvlButtons.length
     preMadeLvl.forEach((lvl, i) => {
         let score = 0
