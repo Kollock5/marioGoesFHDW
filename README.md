@@ -49,10 +49,10 @@ SOFTWARE.
 Nein
 ### Was ist das für ein Spiel?
 MarioGoesFHDW ist ein von Super Mario inspiriertes Adventure-Spiel, welches im Zusammenhang eines Projektes von FHDW-Studenten entwickelt wurde.
-### Wie installiere ich das spiel? 
-Sehe "Installation"
+### Wie installiere ich das Spiel? 
+Siehe "Installation"
 ### Steuerung
-[!Steuerung](https://github.com/Kollock5/marioGoesFHDW/blob/main/res/manual.png)
+[Steuerung](https://github.com/Kollock5/marioGoesFHDW/blob/main/res/manual.png)
 ### Was muss ich in diesem Spiel machen?
 Mario ist auf der Suche nach seinem Bachelorabschluss und muss verschiedene Hindernisse überwinden um diesen zu erreichen.
 Sammle Coins, EnergyDrinks, Brot und erreiche das Ziel (Flagge)
