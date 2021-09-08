@@ -20,8 +20,8 @@ import { lvl3_4 } from "../level/lvl3-4.js";
 
 
 var activeLvl = null
-var activeMusic = true
-var activeSound = true
+export var activeMusic = true
+export var activeSound = true
 
 var lvlButtons = []
 var customLvl = [

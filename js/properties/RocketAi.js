@@ -2,6 +2,7 @@ import { Property } from "../Property.js";
 import { Vector } from "../util/Vector.js";
 import { collisionDetection } from "../util/collisionDetection.js";
 import { Entity } from "../Entity.js";
+import { activeSound } from "../main.js"
 
 export class RocketAi extends Property {
     constructor(rocketDirection = new Vector(-0.5, 0)) {
@@ -20,14 +21,14 @@ export class RocketAi extends Property {
         this.stateTimer = this.stateTimer + 1
         this.animation(entity, level)
 
-         this.distance = collisionDetection.calculateDistance(entity,
+        this.distance = collisionDetection.calculateDistance(entity,
             new Entity(new Vector((window.innerWidth / 2) - level.offset.x, (window.innerHeight / 2) - level.offset.y),
-            new Vector(1, 1)))
+                new Vector(1, 1)))
 
-            if (this.distance.total < 500) {
-                this.audio.volume = (500 - this.distance.total) / 500
-                this.audio.play()
-            }
+        if (this.distance.total < 500 && activeSound) {
+            this.audio.volume = (500 - this.distance.total) / 500
+            this.audio.play()
+        }
 
         entity.acceleration.add(this.rocketDirection)
 

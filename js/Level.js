@@ -1,4 +1,5 @@
 import { levelEditor } from "./levelEditor.js";
+import { activeMusic } from "./main.js";
 import { keys } from "./util/keys.js";
 import { Vector } from "./util/Vector.js";
 
@@ -37,10 +38,13 @@ export class Level {
         })
         this.interval = setInterval(() => this.gameTick(), this.gameSpeed);
 
-        this.audio = new Audio('./sfx/theme.wav')
-        this.audio.volume = 0.3
-        this.audio.play()
-        this.audio.loop = true
+        if (activeMusic) {
+            this.audio = new Audio('./sfx/theme.wav')
+            this.audio.volume = 0.3
+            this.audio.play()
+            this.audio.loop = true
+        }
+
     }
 
     gameTick() {
@@ -187,8 +191,8 @@ export class Level {
             context.textAlign = "center"
             context.fillText("GAME CLEAR", game.width / 2, game.height / 2)
             context.font = "60px Tahoma"
-            scoreTxt = "SCORE: " + (this.score + this.time + this.health * 50)
             scoreTxt = "SCORE: " + (this.score * 10 + this.time + this.health * 50)
+            context.fillText(scoreTxt, game.width / 2, game.height / 2 + 120)
         }
     }
 }

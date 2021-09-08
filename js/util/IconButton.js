@@ -1,3 +1,4 @@
+import { activeSound } from "../main.js";
 import { Vector } from "./Vector.js";
 
 export class IconButton {
@@ -19,9 +20,12 @@ export class IconButton {
             vecPos.x < this.pos.x + this.size.x &&
             vecPos.y > this.pos.y &&
             vecPos.y < this.pos.y + this.size.y) {
-            this.audio = new Audio('../sfx/menu_select.wav')
-            this.audio.play()
-            this.onClick()
+            if (activeSound) {
+                this.audio = new Audio('../sfx/menu_select.wav')
+                this.audio.play()
+                this.onClick()
+            }
+
         }
     }
 }
