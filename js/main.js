@@ -142,8 +142,8 @@ function resizeWindow() {
         button.pos = new Vector((game.width / 2) - (button.size.x / 2) + (-250 + (i % 4) * 165), game.height / 2 + (Math.floor(i / 4) * 80))
     })
     lvlEditorButton.pos = new Vector((game.width / 2) + 330, game.height / 2)
-    musicButton.pos = new Vector((game.width / 2) + 330, game.height / 2 + 50)
-    helpButton.pos = new Vector((game.width / 2) - 330 - 32, game.height / 2)
+    helpButton.pos = new Vector((game.width / 2) + 330, game.height / 2 + 50)
+    musicButton.pos = new Vector((game.width / 2) - 330 - 32, game.height / 2)
     soundButton.pos = new Vector((game.width / 2) - 330 - 32, game.height / 2 + 50)
 }
 

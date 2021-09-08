@@ -39,9 +39,9 @@ export class LvlButton {
             if (activeSound) {
                 this.audio = new Audio('../sfx/menu_select.wav')
                 this.audio.play()
-                this.onClick()
             }
 
+            this.onClick()
         }
     }
 }

@@ -29,9 +29,9 @@ export class Button {
             if (activeSound) {
                 this.audio = new Audio('../sfx/menu_select.wav')
                 this.audio.play()
-                this.onClick()
-            }
 
+            }
+            this.onClick()
         }
     }
 }
