@@ -11,7 +11,10 @@ import { lvl1_3 } from "../level/lvl1-3.js";
 import { lvl1_4 } from "../level/lvl1-4.js";
 import { lvl2_1 } from "../level/lvl2-1.js";
 import { lvl2_2 } from "../level/lvl2-2.js";
-
+import { lvl3_1 } from "../level/lvl3-1.js";
+import { lvl3_2 } from "../level/lvl3-2.js";
+import { lvl3_3 } from "../level/lvl3-3.js";
+import { lvl3_4 } from "../level/lvl3-4.js";
 
 var activeLvl = null
 var activeMusic = true
@@ -31,6 +34,10 @@ var preMadeLvl = [
     { name: "World 1-4", data: lvl1_4 },
     { name: "World 2-1", data: lvl2_1 },
     { name: "World 2-2", data: lvl2_2 },
+    { name: "World 3-1", data: lvl3_1 },
+    { name: "World 3-2", data: lvl3_2 },
+    { name: "World 3-3", data: lvl3_3 },
+    { name: "World 3-4", data: lvl3_4 },
 ]
 
 var lvlEditorButton = new IconButton("./res/button_editor.png",
