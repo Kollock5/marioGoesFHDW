@@ -1,5 +1,7 @@
 import { Property } from "../Property.js";
 import { Vector } from "../util/Vector.js";
+import { collisionDetection } from "../util/collisionDetection.js";
+import { Entity } from "../Entity.js";
 
 export class SlimeAi extends Property {
     constructor() {
@@ -7,6 +9,7 @@ export class SlimeAi extends Property {
         this.won = false
         this.state = 0
         this.stateTimer = 0
+        this.audio = new Audio('../sfx/ghost_slime.wav');
     }
 
     onCreate(entity, level) {
@@ -22,13 +25,22 @@ export class SlimeAi extends Property {
                 break;
             case 1:
                 entity.acceleration.add(new Vector(0, -1.3))
+
+                this.distance = collisionDetection.calculateDistance(entity,
+                    new Entity(new Vector((window.innerWidth / 2) - level.offset.x, (window.innerHeight / 2) - level.offset.y),
+                        new Vector(1, 1)))
+
+                if (this.distance.total < 500) {
+                    this.audio.volume = (500 - this.distance.total) / 500
+                    this.audio.play()
+                }
+
                 break;
             case 2:
                 entity.acceleration.add(new Vector(0.45, 0))
                 break;
             case 3:
                 entity.acceleration.add(new Vector(0, -1.3))
-
                 break;
             default:
                 break;

@@ -4,7 +4,7 @@ export class MoldyBreadLogic extends Property {
     constructor() {
         super()
         this.hit = false
-        this.audio = new Audio('../sfx/coins.wav');
+        this.audio = new Audio('../sfx/powerup.wav');
     }
 
     onCreate(entity, level) {
