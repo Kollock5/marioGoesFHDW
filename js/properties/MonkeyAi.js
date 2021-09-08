@@ -3,6 +3,7 @@ import { Vector } from "../util/Vector.js";
 import { MonkeyBall } from "../entities/MonkeyBall.js";
 import { collisionDetection } from "../util/collisionDetection.js";
 import { Entity } from "../Entity.js";
+import { activeSound } from "../main.js";
 
 export class MonkeyAi extends Property {
     constructor() {
@@ -52,7 +53,7 @@ export class MonkeyAi extends Property {
                             new Entity(new Vector((window.innerWidth / 2) - level.offset.x, (window.innerHeight / 2) - level.offset.y),
                                 new Vector(1, 1)))
 
-                        if (this.distance.total < 500) {
+                        if (this.distance.total < 500 && activeSound) {
                             this.audio.volume = (500 - this.distance.total) / 500
                             this.audio.play()
                         }
@@ -65,7 +66,7 @@ export class MonkeyAi extends Property {
                             new Entity(new Vector((window.innerWidth / 2) - level.offset.x, (window.innerHeight / 2) - level.offset.y),
                                 new Vector(1, 1)))
 
-                        if (this.distance.total < 500) {
+                        if (this.distance.total < 500 && activeSound) {
                             this.audio.volume = (500 - this.distance.total) / 500
                             this.audio.play()
                         }

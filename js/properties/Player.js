@@ -2,6 +2,7 @@ import { keys } from "../util/keys.js"
 import { Property } from "../Property.js"
 import { Vector } from "../util/Vector.js"
 import { collisionDetection } from "../util/collisionDetection.js"
+import { activeSound } from "../main.js"
 
 export class Player extends Property {
     constructor() {
@@ -20,7 +21,8 @@ export class Player extends Property {
 
     onTick = function(entity, level) {
         if (entity.isHit) {
-            this.audioHit.play()
+            if (activeSound)
+                this.audioHit.play()
             if (this.hitDelay <= 0) {
                 level.health = level.health - 1
                 this.hitDelay = 60
@@ -38,7 +40,8 @@ export class Player extends Property {
         }
         if (keys.up == true) {
             if (entity.collisionSide.bottom == true) {
-                this.audioJump.play()
+                if (activeSound)
+                    this.audioJump.play()
                 entity.acceleration.add(new Vector(0, -15))
             }
         }

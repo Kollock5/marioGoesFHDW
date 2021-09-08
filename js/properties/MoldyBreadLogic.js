@@ -1,3 +1,4 @@
+import { activeSound } from "../main.js";
 import { Property } from "../Property.js";
 
 export class MoldyBreadLogic extends Property {
@@ -13,7 +14,8 @@ export class MoldyBreadLogic extends Property {
 
     onTick = function(entity, level) {
         if (this.hit) {
-            this.audio.play()
+            if (activeSound)
+                this.audio.play()
             level.backgroundEntities.splice(level.backgroundEntities.indexOf(entity), 1)
             level.time = level.time + 30;
         }

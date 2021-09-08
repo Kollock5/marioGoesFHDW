@@ -14,8 +14,8 @@ import { lvl2_2 } from "../level/lvl2-2.js";
 
 
 var activeLvl = null
-var activeMusic = true
-var activeSound = true
+export var activeMusic = true
+export var activeSound = true
 
 var lvlButtons = []
 var customLvl = [
